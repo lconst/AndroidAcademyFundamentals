@@ -24,11 +24,12 @@ class SecondActivity : AppCompatActivity() {
         fun startActivity(context: Context) : Intent =
                 Intent (context, SecondActivity::class.java)
 
-        private val broadcastReceiver: BroadcastReceiver by lazy {
-            object : BroadcastReceiver() {
-                override fun onReceive(context: Context, intent: Intent?) {
-//                    startFirstActivity(intent)
-                }
+    }
+
+    private val broadcastReceiver: BroadcastReceiver by lazy {
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent?) {
+                    startFirstActivity(intent)
             }
         }
     }
