@@ -16,13 +16,12 @@ class ContactJobIntentService: JobIntentService() {
         private val TAG = "MyJobIntentService"
     }
 
-    private var cols = listOf<String>(
+    private var cols = arrayOf(
         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
         ContactsContract.CommonDataKinds.Phone.NUMBER
     )
-        .toTypedArray()
 
-    private val contacts = ArrayList<String>()
+    private val contacts = arrayListOf<String>()
 
     fun enqueueWork(context: Context, work: Intent) {
         enqueueWork(context, ContactJobIntentService::class.java, 123, work)
@@ -39,14 +38,23 @@ class ContactJobIntentService: JobIntentService() {
         Log.d(TAG, "onDestroy: $TAG")
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onHandleWork(intent: Intent) {
 
-        var rs = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                                       cols, null, null,
-                                       ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-        while (rs?.moveToNext()!!) {
-            contacts.add("${rs.getString(0)} ${rs.getString(1)}")
+        val rs = contentResolver.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            cols,
+            null,
+            null,
+            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+        )
+        if (rs == null) {
+            Log.e(TAG, "onHandleWork: rs == null" )
+        } else if (!rs.moveToNext()) {
+            contacts.add(getString(R.string.contacts_not_found))
+        } else {
+             do {
+                contacts.add("${rs.getString(0)} ${rs.getString(1)}")
+            } while (rs.moveToNext())
         }
     }
 }

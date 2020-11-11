@@ -21,26 +21,43 @@ class SecondActivity : AppCompatActivity() {
         private const val TAG = "SecondActivity"
         private const val ACTION = "com.example.broadcast.MY_NOTIFICATION"
 
+        fun startActivity(context: Context) : Intent =
+                Intent (context, SecondActivity::class.java)
+
+        private val broadcastReceiver: BroadcastReceiver by lazy {
+            object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent?) {
+//                    startFirstActivity(intent)
+                }
+            }
+        }
     }
-    private var broadcastReceiver: BroadcastReceiver? = null
+
+    private fun startFirstActivity(inputIntent: Intent?) {
+        setResult(RESULT_OK, inputIntent);
+        finish();
+    }
+
     private val jobIntentService = ContactJobIntentService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
-            addAction(ACTION)
-        }
-        broadcastReceiver = makeBroadcastReceiver()
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver!!, filter)
+        registerBroadcast()
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, Array(1) { android.Manifest.permission.READ_CONTACTS }, REQUEST_CODE)
         } else {
             readContact()
         }
+    }
+
+    private fun registerBroadcast() {
+        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
+            addAction(ACTION)
+        }
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, filter)
     }
 
     private fun makeBroadcastReceiver(): BroadcastReceiver {
@@ -69,10 +86,6 @@ class SecondActivity : AppCompatActivity() {
         jobIntentService.enqueueWork(this, Intent(this, ContactJobIntentService::class.java));
     }
 
-    private fun startFirstActivity(inputIntent: Intent?) {
-        setResult(RESULT_OK, inputIntent);
-        finish();
-    }
 
     override fun onDestroy() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver!!)
