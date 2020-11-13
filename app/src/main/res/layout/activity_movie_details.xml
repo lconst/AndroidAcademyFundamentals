@@ -159,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_0_5x"
-        android:lineHeight="20sp"
+        android:lineSpacingExtra="6sp"
         android:text="@string/storyline_text"
         android:textColor="@color/white_opacity_2"
         android:textSize="@dimen/text_size_2_75x"
