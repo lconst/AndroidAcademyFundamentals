@@ -14,4 +14,6 @@
     <color name="gray_2">#6D6D80</color>
     <color name="gray_3">#D8D8D8</color>
     <color name="red_1">#FF3466</color>
+    <color name="dark">#191926</color>
+    <color name="dark_opacity_90">#E6191926</color>
 </resources>

@@ -13,4 +13,5 @@
     <string name="cast_name_2">Chris Evans</string>
     <string name="cast_name_3">Mark Ruffalo</string>
     <string name="cast_name_4">Chris Hemsworth</string>
+    <string name="location_text">Movies list</string>
 </resources>
