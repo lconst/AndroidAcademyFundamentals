@@ -13,7 +13,12 @@
     <color name="gray_1">#ECECEC</color>
     <color name="gray_2">#6D6D80</color>
     <color name="gray_3">#D8D8D8</color>
+    <color name="gray_4_opacity_50">#80636375</color>
+    <color name="gray_5_opacity_50">#803B3B4D</color>
+    <color name="gray_6">#565665</color>
     <color name="red_1">#FF3466</color>
+    <color name="red_2">#FF3365</color>
     <color name="dark">#191926</color>
     <color name="dark_opacity_90">#E6191926</color>
+    <color name="transparent">#00000000</color>
 </resources>

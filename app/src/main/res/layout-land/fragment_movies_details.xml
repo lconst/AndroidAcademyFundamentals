@@ -88,7 +88,7 @@
             android:layout_width="@dimen/image_rating_width"
             android:layout_height="@dimen/image_rating_height"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
+            android:src="@drawable/star_icon_colored"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
@@ -98,7 +98,7 @@
             android:layout_height="@dimen/image_rating_height"
             android:layout_marginStart="@dimen/space_0_5x"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
+            android:src="@drawable/star_icon_colored"
             app:layout_constraintStart_toEndOf="@+id/rating_1"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
@@ -108,7 +108,7 @@
             android:layout_height="@dimen/image_rating_height"
             android:layout_marginStart="@dimen/space_0_5x"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
+            android:src="@drawable/star_icon_colored"
             app:layout_constraintStart_toEndOf="@+id/rating_2"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
@@ -118,7 +118,7 @@
             android:layout_height="@dimen/image_rating_height"
             android:layout_marginStart="@dimen/space_0_5x"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
+            android:src="@drawable/star_icon_colored"
             app:layout_constraintStart_toEndOf="@+id/rating_3"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
@@ -128,7 +128,7 @@
             android:layout_height="@dimen/image_rating_height"
             android:layout_marginStart="@dimen/space_0_5x"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_icon"
+            android:src="@drawable/star_icon"
             app:layout_constraintStart_toEndOf="@+id/rating_4"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
