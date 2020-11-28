@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/background_movie_details_fragment"
+    android:orientation="vertical"
     tools:context=".FragmentMoviesDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,40 +14,27 @@
         android:paddingStart="@dimen/space_2x"
         android:paddingEnd="@dimen/space_2x">
 
-        <!--    top menu-->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/top_menu_guideline"
+        <Button
+            android:id="@+id/back"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="44dp" />
-
-        <ImageView
-            android:id="@+id/back_image"
-            android:layout_width="6dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="@dimen/space_1x"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@+id/back_text"
-            app:layout_constraintEnd_toStartOf="@+id/back_text"
-            app:layout_constraintTop_toTopOf="@+id/back_text"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/back_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2x"
-            android:layout_marginTop="@dimen/space_1_5x"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_back"
+            android:lineSpacingExtra="4sp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
             android:text="@string/back"
+            android:textAllCaps="false"
             android:textColor="@color/white_opacity_50"
-            android:textSize="@dimen/text_size_2x"
+            android:textSize="@dimen/text_size_1_75x"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/top_menu_guideline" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!--    PG-->
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,8 +82,8 @@
             android:stepSize="0.1"
             android:theme="@style/CustomRatingBar"
             android:transformPivotY="6dp"
-            app:layout_constraintTop_toBottomOf="@id/tag"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tag" />
 
         <TextView
             android:id="@+id/rating_text"
@@ -153,10 +140,12 @@
 
         <ImageView
             android:id="@+id/cast_image_1"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_1"
             app:layout_constraintEnd_toStartOf="@+id/cast_image_2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -178,11 +167,12 @@
 
         <ImageView
             android:id="@+id/cast_image_2"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_2"
             app:layout_constraintEnd_toStartOf="@+id/cast_image_3"
             app:layout_constraintHorizontal_bias="0.5"
@@ -204,11 +194,12 @@
 
         <ImageView
             android:id="@+id/cast_image_3"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_3"
             app:layout_constraintEnd_toStartOf="@+id/cast_image_4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -232,10 +223,11 @@
 
         <ImageView
             android:id="@+id/cast_image_4"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
