@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), FragmentMoviesList.ClickListener,
         if (savedInstanceState == null) {
             navigateToFragment(
                 FragmentMoviesList.newInstance(),
-                FragmentMoviesList.FRAGMENT_TAG
+                FragmentMoviesList::class.java.name
             )
         }
     }
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), FragmentMoviesList.ClickListener,
     override fun onClickItem() {
         navigateToFragment(
             FragmentMoviesDetails.newInstance(),
-            FragmentMoviesDetails.FRAGMENT_TAG
+            FragmentMoviesDetails::class.java.name
         )
     }
 

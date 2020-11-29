@@ -11,7 +11,6 @@
     android:paddingTop="2dp"
     android:paddingEnd="2dp">
 
-    <!--    PG-->
     <TextView
         android:id="@+id/pg"
         android:layout_width="@dimen/space_3x"
@@ -31,7 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--        like-->
     <ImageView
         android:id="@+id/like"
         android:layout_width="wrap_content"
@@ -43,7 +41,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--        Movie picture-->
     <ImageView
         android:id="@+id/movies_image"
         android:layout_width="@dimen/movies_item_image_width"
@@ -53,8 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!--        tag-->
     <TextView
         android:id="@+id/tag"
         android:layout_width="wrap_content"
@@ -86,19 +81,6 @@
         app:layout_constraintBottom_toBottomOf="@id/movies_image"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <!--    <RatingBar-->
-    <!--        android:layout_marginStart="@dimen/space_1x"-->
-    <!--        android:id="@+id/rating"-->
-    <!--        style="@style/CustomRatingBarStyle"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginBottom="10dp"-->
-    <!--        android:layout_marginTop="15sp"-->
-    <!--        android:rating="3.5"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/movies_image"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--            />-->
-
     <TextView
         android:id="@+id/review"
         android:layout_width="wrap_content"
@@ -114,8 +96,6 @@
         app:layout_constraintStart_toEndOf="@id/rating"
         app:layout_constraintTop_toTopOf="@id/rating" />
 
-
-    <!--        Name & min-->
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"

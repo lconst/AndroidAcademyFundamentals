@@ -14,18 +14,15 @@ class FragmentMoviesDetails : Fragment() {
     private var fragmentBinding: FragmentMoviesDetailsBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.fragment_movies_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentMoviesDetailsBinding.bind(view)
-        fragmentBinding = binding
-
-        binding.back.apply {
-            setOnClickListener {
+        FragmentMoviesDetailsBinding.bind(view).apply {
+            fragmentBinding = this
+            back.setOnClickListener {
                 listener?.onBack()
             }
         }
@@ -38,19 +35,17 @@ class FragmentMoviesDetails : Fragment() {
         }
     }
 
-    override fun onDetach() {
-        listener = null
-        super.onDetach()
-    }
-
     override fun onDestroy() {
         fragmentBinding = null
         super.onDestroy()
     }
 
-    companion object {
-        var FRAGMENT_TAG = "fragmentMoviesDetails"
+    override fun onDetach() {
+        listener = null
+        super.onDetach()
+    }
 
+    companion object {
         fun newInstance() : FragmentMoviesDetails{
             return FragmentMoviesDetails()
         }

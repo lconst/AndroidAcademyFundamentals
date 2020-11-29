@@ -24,16 +24,10 @@ class FragmentMoviesList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentMoviesListBinding.bind(view)
-        fragmentBinding = binding
-        binding.movieItem.movie.apply {
-            setOnClickListener { listener?.onClickItem() }
+        FragmentMoviesListBinding.bind(view).apply {
+            fragmentBinding = this
+            movieItem.movie.setOnClickListener { listener?.onClickItem() }
         }
-    }
-
-    override fun onDestroy() {
-        fragmentBinding = null
-        super.onDestroy()
     }
 
     override fun onAttach(context: Context) {
@@ -43,14 +37,17 @@ class FragmentMoviesList : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        fragmentBinding = null
+        super.onDestroy()
+    }
+
     override fun onDetach() {
         listener = null
         super.onDetach()
     }
 
     companion object {
-        var FRAGMENT_TAG = "fragmentMoviesList"
-
         fun newInstance(): FragmentMoviesList {
             return FragmentMoviesList()
         }
