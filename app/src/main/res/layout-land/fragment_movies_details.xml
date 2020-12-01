@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_movie_details_fragment"
     android:orientation="vertical"
-    android:background="@drawable/background_movie_details_activity"
-    tools:context=".MovieDetailsActivity">
+    tools:context=".FragmentMoviesDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,51 +14,39 @@
         android:paddingStart="@dimen/space_2x"
         android:paddingEnd="@dimen/space_2x">
 
-        <!--    top menu-->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/top_menu_guideline"
+        <LinearLayout
+            android:id="@+id/back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="44dp" />
-
-        <ImageView
-            android:id="@+id/back_image"
-            android:layout_width="6dp"
-            android:layout_height="10dp"
-            android:layout_marginEnd="@dimen/space_1x"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="@+id/back_text"
-            app:layout_constraintEnd_toStartOf="@+id/back_text"
-            app:layout_constraintTop_toTopOf="@+id/back_text"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/back_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2x"
-            android:layout_marginTop="@dimen/space_2_5x"
-            android:text="@string/back"
-            android:textColor="@color/white_opacity_50"
-            android:textSize="@dimen/text_size_2x"
+            android:layout_height="40dp"
+            android:layout_marginTop="44dp"
+            android:gravity="center_vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/top_menu_guideline" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!--    PG-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/back"
+                android:textColor="@color/white_opacity_50"
+                android:textSize="@dimen/text_size_1_75x" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_2_5x"
+            android:layout_marginBottom="@dimen/space_1_5x"
             android:text="@string/pg_text"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_2_5x"
+            android:textSize="@dimen/text_size_1_5x"
             app:layout_constraintBottom_toTopOf="@id/name_text"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!--    name-->
         <TextView
             android:id="@+id/name_text"
             android:layout_width="wrap_content"
@@ -71,7 +59,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- tag -->
         <TextView
             android:id="@+id/tag"
             android:layout_width="wrap_content"
@@ -82,54 +69,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name_text" />
 
-        <!--    rating bar-->
-        <ImageView
-            android:id="@+id/rating_1"
-            android:layout_width="@dimen/image_rating_width"
-            android:layout_height="@dimen/image_rating_height"
+        <RatingBar
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="0.1"
+            android:theme="@style/CustomRatingBar"
+            android:transformPivotY="6dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tag" />
-
-        <ImageView
-            android:id="@+id/rating_2"
-            android:layout_width="@dimen/image_rating_width"
-            android:layout_height="@dimen/image_rating_height"
-            android:layout_marginStart="@dimen/space_0_5x"
-            android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
-            app:layout_constraintStart_toEndOf="@+id/rating_1"
-            app:layout_constraintTop_toBottomOf="@id/tag" />
-
-        <ImageView
-            android:id="@+id/rating_3"
-            android:layout_width="@dimen/image_rating_width"
-            android:layout_height="@dimen/image_rating_height"
-            android:layout_marginStart="@dimen/space_0_5x"
-            android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
-            app:layout_constraintStart_toEndOf="@+id/rating_2"
-            app:layout_constraintTop_toBottomOf="@id/tag" />
-
-        <ImageView
-            android:id="@+id/rating_4"
-            android:layout_width="@dimen/image_rating_width"
-            android:layout_height="@dimen/image_rating_height"
-            android:layout_marginStart="@dimen/space_0_5x"
-            android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_colored_icon"
-            app:layout_constraintStart_toEndOf="@+id/rating_3"
-            app:layout_constraintTop_toBottomOf="@id/tag" />
-
-        <ImageView
-            android:id="@+id/rating_5"
-            android:layout_width="@dimen/image_rating_width"
-            android:layout_height="@dimen/image_rating_height"
-            android:layout_marginStart="@dimen/space_0_5x"
-            android:layout_marginTop="@dimen/space_1x"
-            android:src="@drawable/ic_star_icon"
-            app:layout_constraintStart_toEndOf="@+id/rating_4"
             app:layout_constraintTop_toBottomOf="@id/tag" />
 
         <TextView
@@ -139,13 +91,11 @@
             android:layout_marginStart="@dimen/space_1x"
             android:text="@string/rating_text"
             android:textColor="@color/gray_2"
-            android:textSize="@dimen/text_size_2_75x"
+            android:textSize="@dimen/text_size_1_75x"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/rating_5"
-            app:layout_constraintStart_toEndOf="@id/rating_5"
-            app:layout_constraintTop_toTopOf="@id/rating_5" />
-
-        <!--    storyline-->
+            app:layout_constraintBottom_toBottomOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/rating"
+            app:layout_constraintTop_toTopOf="@id/rating" />
 
         <TextView
             android:id="@+id/storyline_name"
@@ -154,7 +104,7 @@
             android:layout_marginTop="@dimen/space_3x"
             android:text="@string/storyline_name"
             android:textColor="@color/gray_1"
-            android:textSize="@dimen/text_size_2_75x"
+            android:textSize="@dimen/text_size_1_75x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rating_text" />
@@ -167,11 +117,10 @@
             android:lineSpacingExtra="6sp"
             android:text="@string/storyline_text"
             android:textColor="@color/white_opacity_85"
-            android:textSize="@dimen/text_size_2_75x"
+            android:textSize="@dimen/text_size_1_75x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/storyline_name" />
 
-        <!--    cast-->
         <TextView
             android:id="@+id/cast"
             android:layout_width="wrap_content"
@@ -180,18 +129,22 @@
             android:lineSpacingExtra="10sp"
             android:text="@string/cast"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_2_75x"
+            android:textSize="@dimen/text_size_1_75x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/storyline_text" />
 
         <ImageView
             android:id="@+id/cast_image_1"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_1"
+            app:layout_constraintEnd_toStartOf="@+id/cast_image_2"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cast" />
 
@@ -203,20 +156,23 @@
             android:lineSpacingExtra="4sp"
             android:text="@string/cast_name_1"
             android:textColor="@color/gray_3"
-            android:textSize="@dimen/text_size_2_5x"
+            android:textSize="@dimen/text_size_1_5x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/cast_image_1"
             app:layout_constraintTop_toBottomOf="@id/cast_image_1" />
 
         <ImageView
             android:id="@+id/cast_image_2"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_2"
-            app:layout_constraintStart_toEndOf="@id/cast_image_1"
+            app:layout_constraintEnd_toStartOf="@+id/cast_image_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cast_image_1"
             app:layout_constraintTop_toBottomOf="@id/cast" />
 
         <TextView
@@ -227,20 +183,23 @@
             android:lineSpacingExtra="4sp"
             android:text="@string/cast_name_2"
             android:textColor="@color/gray_3"
-            android:textSize="@dimen/text_size_2_5x"
+            android:textSize="@dimen/text_size_1_5x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/cast_image_2"
             app:layout_constraintTop_toBottomOf="@id/cast_image_2" />
 
         <ImageView
             android:id="@+id/cast_image_3"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
             android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_3"
-            app:layout_constraintStart_toEndOf="@id/cast_image_2"
+            app:layout_constraintEnd_toStartOf="@+id/cast_image_4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cast_image_2"
             app:layout_constraintTop_toBottomOf="@id/cast" />
 
         <TextView
@@ -253,20 +212,22 @@
             android:shadowRadius="8"
             android:text="@string/cast_name_3"
             android:textColor="@color/gray_3"
-            android:textSize="@dimen/text_size_2_5x"
+            android:textSize="@dimen/text_size_1_5x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/cast_image_3"
             app:layout_constraintTop_toBottomOf="@id/cast_image_3" />
 
         <ImageView
             android:id="@+id/cast_image_4"
-            android:layout_width="@dimen/cast_image_width"
-            android:layout_height="@dimen/cast_image_height"
-            android:layout_marginStart="@dimen/space_1x"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_1x"
-            android:layout_marginEnd="@dimen/space_1x"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
             android:src="@drawable/actor_4"
-            app:layout_constraintStart_toEndOf="@id/cast_image_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/cast_image_3"
             app:layout_constraintTop_toBottomOf="@id/cast" />
 
         <TextView
@@ -277,7 +238,7 @@
             android:lineSpacingExtra="4sp"
             android:text="@string/cast_name_4"
             android:textColor="@color/gray_3"
-            android:textSize="@dimen/text_size_2_5x"
+            android:textSize="@dimen/text_size_1_5x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/cast_image_4"
             app:layout_constraintTop_toBottomOf="@id/cast_image_4" />
