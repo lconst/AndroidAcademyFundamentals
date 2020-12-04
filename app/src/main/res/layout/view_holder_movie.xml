@@ -46,7 +46,7 @@
         android:layout_width="@dimen/movies_item_image_width"
         android:layout_height="@dimen/movies_item_image_height"
         android:foreground="@drawable/mask"
-        android:src="@drawable/movie"
+        android:src="@drawable/movie_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

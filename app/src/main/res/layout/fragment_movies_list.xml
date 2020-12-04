@@ -38,8 +38,8 @@
             app:layout_constraintTop_toTopOf="@id/location" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movie_item"
-            android:layout_width="@dimen/movie_item_width"
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4x"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import java.util.zip.Inflater
 
@@ -22,6 +23,9 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
         holder.onBind(moviesList[position])
+        holder.itemView.setOnClickListener {
+            Toast.makeText(it.context, moviesList[position].name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,7 +52,9 @@ class MovieAdapter: RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
             pg?.text = movie.pg
             tag?.text = movie.tag
             ratingBar?.rating = movie.rating
-            review?.setText( R.string.review_text, movie.review)
+            review?.text = itemView.context.getString(R.string.review_text, movie.review)
+            name?.text = movie.name
+            min?.text = itemView.context.getString(R.string.movies_item_min, movie.minutes)
         }
 
     }

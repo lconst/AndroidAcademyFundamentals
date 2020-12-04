@@ -7,5 +7,6 @@ data class Movie(
     val minutes: Int,
     val pg: String,
     val rating: Float,
-    val review: Int
+    val review: Int,
+    val actors: List<Actor>
 )
