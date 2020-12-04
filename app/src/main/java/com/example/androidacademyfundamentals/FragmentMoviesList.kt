@@ -26,7 +26,8 @@ class FragmentMoviesList : Fragment() {
 
         FragmentMoviesListBinding.bind(view).apply {
             fragmentBinding = this
-            movieItem.movie.setOnClickListener { listener?.onClickItem() }
+            //TODO create onclick item
+            //movieItem.movie.setOnClickListener { listener?.onClickItem() }
         }
     }
 

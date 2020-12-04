@@ -5,7 +5,7 @@
     android:id="@+id/movie"
     android:layout_width="@dimen/movie_item_width"
     android:layout_height="@dimen/movie_item_height"
-    android:layout_marginTop="26dp"
+    android:layout_marginBottom="@dimen/space_1_5x"
     android:background="@drawable/ic_background_movie_item"
     android:paddingStart="2dp"
     android:paddingTop="2dp"
