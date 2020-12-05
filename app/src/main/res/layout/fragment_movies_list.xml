@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/space_1_5x"
         android:paddingEnd="@dimen/space_1_5x"
-        tools:context=".FragmentMoviesDetails">
+        tools:context=".screen.details.FragmentMoviesDetails">
 
         <ImageView
             android:id="@+id/location"
@@ -39,7 +39,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4x"
             app:layout_constraintStart_toStartOf="parent"

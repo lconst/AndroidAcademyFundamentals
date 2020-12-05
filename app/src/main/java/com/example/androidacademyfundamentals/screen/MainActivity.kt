@@ -1,11 +1,16 @@
-package com.example.androidacademyfundamentals
+package com.example.androidacademyfundamentals.screen
 
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.androidacademyfundamentals.screen.details.FragmentMoviesDetails
+import com.example.androidacademyfundamentals.screen.list.FragmentMoviesList
+import com.example.androidacademyfundamentals.R
+import com.example.androidacademyfundamentals.data.Movie
 
-class MainActivity : AppCompatActivity(), FragmentMoviesList.ClickListener,
+class MainActivity : AppCompatActivity(),
+    FragmentMoviesList.ClickListener,
     FragmentMoviesDetails.ClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +25,11 @@ class MainActivity : AppCompatActivity(), FragmentMoviesList.ClickListener,
     }
 
     // listener of fragment movies list
-    override fun onClickItem() {
+    override fun onClickItem(movie: Movie) {
         navigateToFragment(
-            FragmentMoviesDetails.newInstance(),
+            FragmentMoviesDetails.newInstance(
+                movie
+            ),
             FragmentMoviesDetails::class.java.name
         )
     }

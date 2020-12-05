@@ -1,4 +1,4 @@
-package com.example.androidacademyfundamentals
+package com.example.androidacademyfundamentals.screen.list
 
 import android.graphics.Rect
 import android.view.View
