@@ -34,12 +34,12 @@ class ActorAdapter: RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
     class ActorViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val photo: ImageView? = view.findViewById(R.id.photo)
-        private val name: TextView? = view.findViewById(R.id.name)
+        private val photo: ImageView = view.findViewById(R.id.photo)
+        private val name: TextView = view.findViewById(R.id.name)
 
         fun onBind(actor: Actor) {
-            photo?.setImageResource(actor.photo)
-            name?.text = (actor.name + actor.surname)
+            photo.setImageResource(actor.photo)
+            name.text = (actor.name + actor.surname)
         }
     }
 }

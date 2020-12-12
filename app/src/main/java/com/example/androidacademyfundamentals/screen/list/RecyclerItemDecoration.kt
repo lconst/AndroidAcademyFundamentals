@@ -15,14 +15,11 @@ class RecyclerItemDecoration(
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        val position: Int = parent.getChildAdapterPosition(view) // item position
-        val column: Int = position % spanCount // item column
+        val position: Int = parent.getChildAdapterPosition(view)
+        val column: Int = position % spanCount
 
-        outRect.left = column * spacing / spanCount; // column * ((1f / spanCount) * spacing)
+        outRect.left = column * spacing / spanCount;
         outRect.right =
-            spacing - (column + 1) * spacing / spanCount; // spacing - (column + 1) * ((1f /    spanCount) * spacing)
-        if (position >= spanCount) {
-            //outRect.top = spacing; // item top
-        }
+            spacing - (column + 1) * spacing / spanCount;
     }
 }

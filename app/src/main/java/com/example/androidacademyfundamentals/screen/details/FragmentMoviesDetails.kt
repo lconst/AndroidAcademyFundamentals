@@ -10,62 +10,48 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesDetailsBinding
+import java.lang.IllegalStateException
 
-class FragmentMoviesDetails : Fragment() {
+class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
 
-    private var listener: ClickListener? = null
+    private lateinit var listener: DetailsFragmentInterractor
     private var fragmentBinding: FragmentMoviesDetailsBinding? = null
-    private var movie: Movie? = null
+    private val movie: Movie by lazy { requireArguments().get(MOVIE_KEY) as Movie }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is ClickListener) {
+        if (context is DetailsFragmentInterractor) {
             listener = context
+        } else {
+            throw IllegalStateException("Activity must implement DetailsFragmentInterractor")
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val args = arguments
-        if (args != null) {
-            movie = args.get(MOVIE_KEY) as Movie
-        }
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_movies_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (savedInstanceState != null) {
-            movie = savedInstanceState.getParcelable(MOVIE_KEY)
-        }
+        fragmentBinding = FragmentMoviesDetailsBinding.bind(view)
+        setViews()
+        initRecycler()
+    }
 
-        FragmentMoviesDetailsBinding.bind(view).apply {
-            fragmentBinding = this
-            back.setOnClickListener {
-                listener?.onBack()
-            }
-            recycler.layoutManager = LinearLayoutManager(
-                context,
-                LinearLayoutManager.HORIZONTAL,
-                false)
-            val adapter = ActorAdapter()
-                adapter.bindActors(movie!!.actors)
-            recycler.adapter = adapter
-
-            name?.text = movie!!.name
-            pg?.text = movie!!.pg
-            tag.text = movie!!.tag
-            rating.rating = movie!!.rating
+    private fun setViews() {
+        with(fragmentBinding!!) {
+            back.setOnClickListener { listener.onBack() }
+            name.text = movie.name
+            pg.text = movie.pg
+            tag.text = movie.tag
+            rating.rating = movie.rating
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable(MOVIE_KEY, movie)
+    private fun initRecycler() {
+        val actorAdapter = ActorAdapter()
+        actorAdapter.bindActors(movie.actors)
+        with(fragmentBinding!!.recycler) {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = actorAdapter
+        }
     }
 
     override fun onDestroy() {
@@ -73,12 +59,8 @@ class FragmentMoviesDetails : Fragment() {
         super.onDestroy()
     }
 
-    override fun onDetach() {
-        listener = null
-        super.onDetach()
-    }
-
     companion object {
+
         fun newInstance(movie: Movie) : FragmentMoviesDetails {
             val fragment =
                 FragmentMoviesDetails()
@@ -89,9 +71,5 @@ class FragmentMoviesDetails : Fragment() {
         }
 
         const val MOVIE_KEY = "movie"
-    }
-
-    interface ClickListener {
-        fun onBack()
     }
 }
