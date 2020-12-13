@@ -1,29 +1,30 @@
-package com.example.androidacademyfundamentals
+package com.example.androidacademyfundamentals.screen
 
 import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.androidacademyfundamentals.screen.details.FragmentMoviesDetails
+import com.example.androidacademyfundamentals.screen.list.FragmentMoviesList
+import com.example.androidacademyfundamentals.R
+import com.example.androidacademyfundamentals.data.Movie
+import com.example.androidacademyfundamentals.screen.details.DetailsFragmentInterractor
+import com.example.androidacademyfundamentals.screen.list.ListFragmentInterractor
 
-class MainActivity : AppCompatActivity(), FragmentMoviesList.ClickListener,
-    FragmentMoviesDetails.ClickListener {
+class MainActivity : AppCompatActivity(), ListFragmentInterractor, DetailsFragmentInterractor {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigateToFragment(
-                FragmentMoviesList.newInstance(),
-                FragmentMoviesList::class.java.name
-            )
+            navigateToFragment(FragmentMoviesList.newInstance(), FragmentMoviesList::class.java.name)
         }
     }
 
-    // listener of fragment movies list
-    override fun onClickItem() {
+    override fun onItemClick(movie: Movie) {
         navigateToFragment(
-            FragmentMoviesDetails.newInstance(),
-            FragmentMoviesDetails::class.java.name
+                FragmentMoviesDetails.newInstance(movie),
+                FragmentMoviesDetails::class.java.name
         )
     }
 

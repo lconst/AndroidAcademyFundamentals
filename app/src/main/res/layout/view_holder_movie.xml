@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/movie"
-    android:layout_width="@dimen/movie_item_width"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/movie_item_height"
-    android:layout_marginTop="26dp"
+    android:layout_marginBottom="@dimen/space_1_5x"
     android:background="@drawable/ic_background_movie_item"
     android:paddingStart="2dp"
     android:paddingTop="2dp"
@@ -46,7 +46,7 @@
         android:layout_width="@dimen/movies_item_image_width"
         android:layout_height="@dimen/movies_item_image_height"
         android:foreground="@drawable/mask"
-        android:src="@drawable/movie"
+        android:src="@drawable/movie_1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
