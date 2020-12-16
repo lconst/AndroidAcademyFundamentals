@@ -4,15 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_movie_details_fragment"
+    android:background="@color/dark"
     android:orientation="vertical"
     tools:context=".screen.details.FragmentMoviesDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/space_2x"
-        android:paddingEnd="@dimen/space_2x">
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backdoor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/mask"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/back"
@@ -20,6 +26,8 @@
             android:layout_height="40dp"
             android:layout_marginTop="44dp"
             android:gravity="center_vertical"
+            android:paddingStart="@dimen/space_2x"
+            android:paddingEnd="@dimen/space_2x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -41,7 +49,11 @@
             android:id="@+id/pg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:layout_marginBottom="@dimen/space_1_5x"
+            android:background="@drawable/pg_background"
+            android:padding="@dimen/space_0_5x"
             android:text="@string/pg_text"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_1_5x"
@@ -52,7 +64,9 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/name_top_margin"
+            android:layout_marginEnd="@dimen/space_2x"
             android:text="@string/avengers_end_game"
             android:textColor="@color/gray_1"
             android:textSize="@dimen/text_size_5x"
@@ -64,7 +78,9 @@
             android:id="@+id/tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_0_5x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:text="@string/tag_text"
             android:textColor="@color/red_1"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,7 +91,9 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_1x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:isIndicator="true"
             android:numStars="5"
             android:rating="4"
@@ -102,7 +120,9 @@
             android:id="@+id/storyline_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_3x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:text="@string/storyline_name"
             android:textColor="@color/gray_1"
             android:textSize="@dimen/text_size_1_75x"
@@ -114,7 +134,9 @@
             android:id="@+id/storyline_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_0_5x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:lineSpacingExtra="6sp"
             android:text="@string/storyline_text"
             android:textColor="@color/white_opacity_85"
@@ -126,7 +148,9 @@
             android:id="@+id/cast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_3x"
+            android:layout_marginEnd="@dimen/space_2x"
             android:lineSpacingExtra="10sp"
             android:text="@string/cast"
             android:textColor="@color/white"
@@ -139,9 +163,11 @@
             android:id="@+id/recycler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_2x"
+            android:layout_marginEnd="@dimen/space_2x"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cast"
-            tools:listitem="@layout/view_holder_actor"/>
+            tools:listitem="@layout/view_holder_actor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

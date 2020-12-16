@@ -1,12 +1,15 @@
 package com.example.androidacademyfundamentals.screen.details
 
 import android.content.Context
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesDetailsBinding
@@ -36,12 +39,19 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
     }
 
     private fun setViews() {
+        Glide
+            .with(requireContext())
+            .load(movie.backdrop)
+            .into(fragmentBinding!!.backdoor)
+
         with(fragmentBinding!!) {
+            backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
             back.setOnClickListener { listener.onBack() }
-            name.text = movie.name
-            pg.text = movie.pg
-            tag.text = movie.tag
-            rating.rating = movie.rating
+            name.text = movie.title
+            pg.text = requireContext().getString(R.string.movies_item_age, movie.minimumAge)
+            tag.text = movie.genres.joinToString { it.name }
+            rating.rating = movie.ratings * 5 / 10
+            storylineText.text = movie.overview
         }
     }
 

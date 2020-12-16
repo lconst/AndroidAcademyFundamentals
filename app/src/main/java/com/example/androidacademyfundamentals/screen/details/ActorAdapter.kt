@@ -3,11 +3,11 @@ package com.example.androidacademyfundamentals.screen.details
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Actor
+import com.example.androidacademyfundamentals.databinding.ViewHolderActorBinding
 
 class ActorAdapter: RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
@@ -34,12 +34,16 @@ class ActorAdapter: RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
     class ActorViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private val photo: ImageView = view.findViewById(R.id.photo)
-        private val name: TextView = view.findViewById(R.id.name)
+        private val binding = ViewHolderActorBinding.bind(view)
 
         fun onBind(actor: Actor) {
-            photo.setImageResource(actor.photo)
-            name.text = (actor.name + actor.surname)
+            Glide
+                .with(itemView)
+                .load(actor.picture)
+                .centerCrop()
+                .into(binding.photo)
+
+            binding.name.text = actor.name
         }
     }
 }

@@ -18,4 +18,5 @@
     <string name="review_text">%d REVIEWS</string>
     <string name="movies_item_name">Avengers: End Game</string>
     <string name="movies_item_min">%d MIN</string>
+    <string name="movies_item_age">%d +</string>
 </resources>

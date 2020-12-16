@@ -8,6 +8,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.ViewHolderMovieBinding
@@ -37,26 +38,23 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    class MovieViewHolder(itemView: View, private val clickListener: (Movie) -> Unit): RecyclerView.ViewHolder(itemView) {
+    class MovieViewHolder(view: View, private val clickListener: (Movie) -> Unit): RecyclerView.ViewHolder(view) {
 
-//        private val image: ImageView = view.findViewById(R.id.movies_image)
-//        private val pg: TextView = view.findViewById(R.id.pg)
-//        private val tag: TextView = view.findViewById(R.id.tag)
-//        private val ratingBar: RatingBar = view.findViewById(R.id.rating)
-//        private val review: TextView = view.findViewById(R.id.review)
-//        private val name: TextView = view.findViewById(R.id.name)
-//        private val min: TextView = view.findViewById(R.id.min)
         private val binding = ViewHolderMovieBinding.bind(itemView)
 
         fun onBind(movie: Movie) {
+            Glide
+                .with(itemView)
+                .load(movie.poster)
+                .into(binding.moviesImage)
+
             with(binding) {
-                pg.text = movie.pg
-                tag.text = movie.tag
-                review.text = itemView.context.getString(R.string.review_text, movie.review)
-                name.text = movie.name
-                min.text = itemView.context.getString(R.string.movies_item_min, movie.minutes)
-                moviesImage.setImageResource(movie.imageId)
-                rating.rating = movie.rating
+                pg.text = itemView.context.getString(R.string.movies_item_age, movie.minimumAge)
+                tag.text = movie.genres.joinToString{ it.name }
+                review.text = itemView.context.getString(R.string.review_text, movie.numberOfRatings)
+                name.text = movie.title
+                min.text = itemView.context.getString(R.string.movies_item_min, movie.runtime)
+                rating.rating = (movie.ratings * 5) / 10
             }
             binding.root.setOnClickListener { clickListener(movie) }
         }
