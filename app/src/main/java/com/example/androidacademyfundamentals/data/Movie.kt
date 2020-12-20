@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
-data class Movie(
+class Movie(
     val id: Int,
     val title: String,
     val overview: String,
@@ -17,4 +17,9 @@ data class Movie(
     val runtime: Int,
     val genres: @RawValue List<Genre>,
     val actors: @RawValue List<Actor>
-) : Parcelable
+) : Parcelable {
+
+    fun getRating(): Float {
+        return ratings / 5 * 10
+    }
+}

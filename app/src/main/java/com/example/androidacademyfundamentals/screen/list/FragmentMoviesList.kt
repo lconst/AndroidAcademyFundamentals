@@ -42,7 +42,7 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
     }
 
     private fun initRecycler(items: List<Movie>) {
-        with(fragmentBinding!!) {
+        with(fragmentBinding?:return) {
             recycler.layoutManager = GridLayoutManager(context,2)
             val spaceInPx = resources.getDimensionPixelSize(R.dimen.space_1x)
             recycler.addItemDecoration(RecyclerItemDecoration(2, spaceInPx))

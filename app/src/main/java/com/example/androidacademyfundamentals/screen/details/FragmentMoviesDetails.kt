@@ -44,13 +44,13 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
             .load(movie.backdrop)
             .into(fragmentBinding!!.backdoor)
 
-        with(fragmentBinding!!) {
+        with(fragmentBinding?:return) {
             backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
             back.setOnClickListener { listener.onBack() }
             name.text = movie.title
             pg.text = requireContext().getString(R.string.movies_item_age, movie.minimumAge)
             tag.text = movie.genres.joinToString { it.name }
-            rating.rating = movie.ratings * 5 / 10
+            rating.rating = movie.getRating()
             storylineText.text = movie.overview
         }
     }

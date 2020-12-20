@@ -54,7 +54,7 @@ class MovieAdapter(
                 review.text = itemView.context.getString(R.string.review_text, movie.numberOfRatings)
                 name.text = movie.title
                 min.text = itemView.context.getString(R.string.movies_item_min, movie.runtime)
-                rating.rating = (movie.ratings * 5) / 10
+                rating.rating = movie.getRating()
             }
             binding.root.setOnClickListener { clickListener(movie) }
         }
