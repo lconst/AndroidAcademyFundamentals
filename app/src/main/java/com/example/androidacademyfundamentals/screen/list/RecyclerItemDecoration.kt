@@ -18,8 +18,7 @@ class RecyclerItemDecoration(
         val position: Int = parent.getChildAdapterPosition(view)
         val column: Int = position % spanCount
 
-        outRect.left = column * spacing / spanCount;
-        outRect.right =
-            spacing - (column + 1) * spacing / spanCount;
+        outRect.left = column * spacing / spanCount
+        outRect.right = spacing - (column + 1) * spacing / spanCount
     }
 }

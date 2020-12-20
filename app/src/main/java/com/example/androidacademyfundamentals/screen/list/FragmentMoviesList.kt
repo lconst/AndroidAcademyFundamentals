@@ -2,22 +2,22 @@ package com.example.androidacademyfundamentals.screen.list
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidacademyfundamentals.R
-import com.example.androidacademyfundamentals.data.Actor
 import com.example.androidacademyfundamentals.data.Movie
-import com.example.androidacademyfundamentals.data.MoviesData
+import com.example.androidacademyfundamentals.data.json.loadMovies
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBinding
+import kotlinx.coroutines.*
 import java.lang.IllegalStateException
 
 class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
 
     private lateinit var fragmentInterractor: ListFragmentInterractor
     private var fragmentBinding: FragmentMoviesListBinding? = null
+    private var movies = listOf<Movie>()
+    private val scope = CoroutineScope(Dispatchers.Main)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,18 +32,24 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
         super.onViewCreated(view, savedInstanceState)
 
         fragmentBinding = FragmentMoviesListBinding.bind(view)
-        initRecycler()
+        scope.launch {
+            val deffered = scope.async {
+                movies = loadMovies(requireContext())
+                initRecycler(movies)
+            }
+            deffered.await()
+        }
     }
 
-    private fun initRecycler() {
-        with(fragmentBinding!!) {
+    private fun initRecycler(items: List<Movie>) {
+        with(fragmentBinding?:return) {
             recycler.layoutManager = GridLayoutManager(context,2)
             val spaceInPx = resources.getDimensionPixelSize(R.dimen.space_1x)
             recycler.addItemDecoration(RecyclerItemDecoration(2, spaceInPx))
 
             val adapter = MovieAdapter(::onItemClick)
             recycler.adapter = adapter
-            adapter.bindMovies(MoviesData().getMovies())
+            adapter.bindMovies(items)
         }
     }
 
