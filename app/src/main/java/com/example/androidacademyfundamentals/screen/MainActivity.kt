@@ -4,27 +4,27 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.androidacademyfundamentals.screen.details.FragmentMoviesDetails
-import com.example.androidacademyfundamentals.screen.list.FragmentMoviesList
+import com.example.androidacademyfundamentals.screen.details.MoviesDetailsFragment
+import com.example.androidacademyfundamentals.screen.list.MoviesListFragment
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.screen.details.DetailsFragmentInterractor
-import com.example.androidacademyfundamentals.screen.list.ListFragmentInterractor
+import com.example.androidacademyfundamentals.screen.list.ListFragmentInteractor
 
-class MainActivity : AppCompatActivity(), ListFragmentInterractor, DetailsFragmentInterractor {
+class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            navigateToFragment(FragmentMoviesList.newInstance(), FragmentMoviesList::class.java.name)
+            navigateToFragment(MoviesListFragment.newInstance(), MoviesListFragment::class.java.name)
         }
     }
 
     override fun onItemClick(movie: Movie) {
         navigateToFragment(
-                FragmentMoviesDetails.newInstance(movie),
-                FragmentMoviesDetails::class.java.name
+                MoviesDetailsFragment.newInstance(movie),
+                MoviesDetailsFragment::class.java.name
         )
     }
 

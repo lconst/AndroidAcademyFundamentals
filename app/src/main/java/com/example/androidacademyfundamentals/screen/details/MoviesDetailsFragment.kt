@@ -4,9 +4,7 @@ import android.content.Context
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -15,7 +13,7 @@ import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesDetailsBinding
 import java.lang.IllegalStateException
 
-class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
+class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
     private lateinit var listener: DetailsFragmentInterractor
     private var fragmentBinding: FragmentMoviesDetailsBinding? = null
@@ -71,9 +69,8 @@ class FragmentMoviesDetails : Fragment(R.layout.fragment_movies_details) {
 
     companion object {
 
-        fun newInstance(movie: Movie) : FragmentMoviesDetails {
-            val fragment =
-                FragmentMoviesDetails()
+        fun newInstance(movie: Movie) : MoviesDetailsFragment {
+            val fragment = MoviesDetailsFragment()
             val args = Bundle()
             args.putParcelable(MOVIE_KEY, movie)
             fragment.arguments = args

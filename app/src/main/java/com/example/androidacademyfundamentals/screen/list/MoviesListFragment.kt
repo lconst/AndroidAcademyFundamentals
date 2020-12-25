@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
@@ -12,19 +13,24 @@ import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBind
 import kotlinx.coroutines.*
 import java.lang.IllegalStateException
 
-class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
+class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
-    private lateinit var fragmentInterractor: ListFragmentInterractor
+    private lateinit var fragmentInteractor: ListFragmentInteractor
+
     private var fragmentBinding: FragmentMoviesListBinding? = null
-    private var movies = listOf<Movie>()
-    private val scope = CoroutineScope(Dispatchers.Main)
+
+    private val viewModel: MoviesListViewModel by viewModels {
+        MoviesListViewModelFactory(requireActivity().application)
+    }
+
+    private val adapter = MovieAdapter(::onItemClick)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is ListFragmentInterractor) {
-            fragmentInterractor = context
+        if (context is ListFragmentInteractor) {
+            fragmentInteractor = context
         } else {
-            throw IllegalStateException("Activity must implement ListFragmentInterractor")
+            throw IllegalStateException("Activity must implement ListFragmentInteractor")
         }
     }
 
@@ -32,29 +38,26 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
         super.onViewCreated(view, savedInstanceState)
 
         fragmentBinding = FragmentMoviesListBinding.bind(view)
-        scope.launch {
-            val deffered = scope.async {
-                movies = loadMovies(requireContext())
-                initRecycler(movies)
-            }
-            deffered.await()
+
+        initRecycler()
+
+        viewModel.getMovies().observe(this.viewLifecycleOwner) {
+            adapter.bindMovies(it)
         }
     }
 
-    private fun initRecycler(items: List<Movie>) {
+    private fun initRecycler() {
         with(fragmentBinding?:return) {
             recycler.layoutManager = GridLayoutManager(context,2)
+            recycler.adapter = adapter
+
             val spaceInPx = resources.getDimensionPixelSize(R.dimen.space_1x)
             recycler.addItemDecoration(RecyclerItemDecoration(2, spaceInPx))
-
-            val adapter = MovieAdapter(::onItemClick)
-            recycler.adapter = adapter
-            adapter.bindMovies(items)
         }
     }
 
     private fun onItemClick(movie: Movie) {
-        fragmentInterractor.onItemClick(movie)
+        fragmentInteractor.onItemClick(movie)
     }
 
     override fun onDestroy() {
@@ -64,8 +67,8 @@ class FragmentMoviesList : Fragment(R.layout.fragment_movies_list){
 
     companion object {
 
-        fun newInstance(): FragmentMoviesList {
-            return FragmentMoviesList()
+        fun newInstance(): MoviesListFragment {
+            return MoviesListFragment()
         }
     }
 }

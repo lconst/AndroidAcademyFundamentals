@@ -2,7 +2,7 @@ package com.example.androidacademyfundamentals.screen.list
 
 import com.example.androidacademyfundamentals.data.Movie
 
-interface ListFragmentInterractor {
+interface ListFragmentInteractor {
 
     fun onItemClick(movie: Movie)
 }

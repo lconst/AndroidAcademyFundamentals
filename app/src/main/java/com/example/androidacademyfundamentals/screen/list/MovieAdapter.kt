@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.ViewHolderMovieBinding
@@ -46,6 +47,7 @@ class MovieAdapter(
             Glide
                 .with(itemView)
                 .load(movie.poster)
+                .transform(RoundedCorners(16))
                 .into(binding.moviesImage)
 
             with(binding) {
