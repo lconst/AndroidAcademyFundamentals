@@ -5,6 +5,7 @@ import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -69,12 +70,8 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
     companion object {
 
-        fun newInstance(movie: Movie) : MoviesDetailsFragment {
-            val fragment = MoviesDetailsFragment()
-            val args = Bundle()
-            args.putParcelable(MOVIE_KEY, movie)
-            fragment.arguments = args
-            return fragment
+        fun newInstance(movie: Movie): Fragment = MoviesDetailsFragment().apply {
+            arguments = bundleOf(MOVIE_KEY to movie)
         }
 
         const val MOVIE_KEY = "movie"

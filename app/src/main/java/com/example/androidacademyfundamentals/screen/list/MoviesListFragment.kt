@@ -10,6 +10,7 @@ import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.data.json.loadMovies
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBinding
+import com.example.androidacademyfundamentals.util.AssetsProviderImp
 import kotlinx.coroutines.*
 import java.lang.IllegalStateException
 
@@ -20,10 +21,12 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
     private var fragmentBinding: FragmentMoviesListBinding? = null
 
     private val viewModel: MoviesListViewModel by viewModels {
-        MoviesListViewModelFactory(requireActivity().application)
+        MoviesListViewModelFactory(AssetsProviderImp(requireContext()))
     }
 
     private val adapter = MovieAdapter(::onItemClick)
+
+    private val numberOfColumns = 2
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,18 +44,19 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
         initRecycler()
 
-        viewModel.getMovies().observe(this.viewLifecycleOwner) {
+        viewModel.loadMovies()
+        viewModel.movies.observe(this.viewLifecycleOwner) {
             adapter.bindMovies(it)
         }
     }
 
     private fun initRecycler() {
         with(fragmentBinding?:return) {
-            recycler.layoutManager = GridLayoutManager(context,2)
+            recycler.layoutManager = GridLayoutManager(context, numberOfColumns)
             recycler.adapter = adapter
 
             val spaceInPx = resources.getDimensionPixelSize(R.dimen.space_1x)
-            recycler.addItemDecoration(RecyclerItemDecoration(2, spaceInPx))
+            recycler.addItemDecoration(RecyclerItemDecoration(numberOfColumns, spaceInPx))
         }
     }
 

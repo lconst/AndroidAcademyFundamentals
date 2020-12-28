@@ -1,20 +1,19 @@
 package com.example.androidacademyfundamentals.screen.list
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.data.json.loadMovies
-import kotlinx.coroutines.async
+import com.example.androidacademyfundamentals.util.AssetsProvider
 import kotlinx.coroutines.launch
 
-class MoviesListViewModel(application: Application): AndroidViewModel(application) {
+class MoviesListViewModel(private val assertsProvider: AssetsProvider): ViewModel() {
 
-    private val movies: LiveData<List<Movie>> = liveData {
-        val data = loadMovies(getApplication())
-        emit(data)
-    }
+    private val _movies = MutableLiveData<List<Movie>>(emptyList())
+    val movies: LiveData<List<Movie>> get() = _movies
 
-    fun getMovies(): LiveData<List<Movie>> {
-        return movies
+    fun loadMovies() {
+        viewModelScope.launch {
+            _movies.value = loadMovies(assertsProvider)
+        }
     }
 }

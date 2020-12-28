@@ -43,11 +43,13 @@ class MovieAdapter(
 
         private val binding = ViewHolderMovieBinding.bind(itemView)
 
+        private val roundingRadius = 16
+
         fun onBind(movie: Movie) {
             Glide
                 .with(itemView)
                 .load(movie.poster)
-                .transform(RoundedCorners(16))
+                .transform(RoundedCorners(roundingRadius))
                 .into(binding.moviesImage)
 
             with(binding) {

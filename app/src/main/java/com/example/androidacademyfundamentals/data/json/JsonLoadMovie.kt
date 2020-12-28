@@ -1,8 +1,7 @@
 package com.example.androidacademyfundamentals.data.json
 
-import android.content.Context
 import com.example.androidacademyfundamentals.data.*
-import com.example.androidacademyfundamentals.util.readAssetFileToString
+import com.example.androidacademyfundamentals.util.AssetsProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -32,11 +31,11 @@ class JsonMovie(
 
 private val jsonFormat = Json { ignoreUnknownKeys = true }
 @Suppress("unused")
-internal suspend fun loadMovies(context: Context): List<Movie> = withContext(Dispatchers.IO) {
-    val genresMap = loadGenres(context)
-    val actorsMap = loadActors(context)
+internal suspend fun loadMovies(assetsProvider: AssetsProvider): List<Movie> = withContext(Dispatchers.IO) {
+    val genresMap = loadGenres(assetsProvider)
+    val actorsMap = loadActors(assetsProvider)
 
-    val data = readAssetFileToString(context, "data.json")
+    val data = assetsProvider.readDataFromAssets("data.json")
     parseMovies(data, genresMap, actorsMap)
 }
 

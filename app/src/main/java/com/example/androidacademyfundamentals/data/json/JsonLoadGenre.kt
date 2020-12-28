@@ -1,8 +1,7 @@
 package com.example.androidacademyfundamentals.data.json
 
-import android.content.Context
 import com.example.androidacademyfundamentals.data.Genre
-import com.example.androidacademyfundamentals.util.readAssetFileToString
+import com.example.androidacademyfundamentals.util.AssetsProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
@@ -14,8 +13,8 @@ private class JsonGenre(val id: Int, val name: String)
 
 private val jsonFormat = Json { ignoreUnknownKeys = true }
 
-internal suspend fun loadGenres(context: Context): List<Genre> = withContext(Dispatchers.IO) {
-    val data = readAssetFileToString(context, "genres.json")
+internal suspend fun loadGenres(assetsProvider: AssetsProvider): List<Genre> = withContext(Dispatchers.IO) {
+    val data = assetsProvider.readDataFromAssets("genres.json")
     parseGenres(data)
 }
 
