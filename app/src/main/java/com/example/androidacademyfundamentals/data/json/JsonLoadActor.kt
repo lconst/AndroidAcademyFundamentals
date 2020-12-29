@@ -1,8 +1,7 @@
 package com.example.androidacademyfundamentals.data.json
 
-import android.content.Context
 import com.example.androidacademyfundamentals.data.Actor
-import com.example.androidacademyfundamentals.util.readAssetFileToString
+import com.example.androidacademyfundamentals.util.AssetsProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
@@ -20,8 +19,8 @@ private class JsonActor(
     val profilePicture: String
 )
 
-suspend fun loadActors(context: Context): List<Actor> = withContext(Dispatchers.IO) {
-    val data = readAssetFileToString(context, "people.json")
+suspend fun loadActors(assetsProvider: AssetsProvider): List<Actor> = withContext(Dispatchers.IO) {
+    val data = assetsProvider.readDataFromAssets("people.json")
     parseActors(data)
 }
 

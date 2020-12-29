@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.ViewHolderMovieBinding
@@ -42,10 +43,13 @@ class MovieAdapter(
 
         private val binding = ViewHolderMovieBinding.bind(itemView)
 
+        private val roundingRadius = 16
+
         fun onBind(movie: Movie) {
             Glide
                 .with(itemView)
                 .load(movie.poster)
+                .transform(RoundedCorners(roundingRadius))
                 .into(binding.moviesImage)
 
             with(binding) {
