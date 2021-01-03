@@ -38,29 +38,29 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
     }
 
     private fun setViews() {
-        Glide
-            .with(requireContext())
-            .load(movie.backdrop)
-            .into(fragmentBinding!!.backdoor)
-
-        with(fragmentBinding?:return) {
-            backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
-            back.setOnClickListener { listener.onBack() }
-            name.text = movie.title
-            pg.text = requireContext().getString(R.string.movies_item_age, movie.minimumAge)
-            tag.text = movie.genres.joinToString { it.name }
-            rating.rating = movie.getRating()
-            storylineText.text = movie.overview
-        }
+//        Glide
+//            .with(requireContext())
+//            .load(movie.backdrop)
+//            .into(fragmentBinding!!.backdoor)
+//
+//        with(fragmentBinding?:return) {
+//            backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
+//            back.setOnClickListener { listener.onBack() }
+//            name.text = movie.title
+//            pg.text = requireContext().getString(R.string.movies_item_age, movie.minimumAge)
+//            tag.text = movie.genres.joinToString { it.name }
+//            rating.rating = movie.getRating()
+//            storylineText.text = movie.overview
+//        }
     }
 
     private fun initRecycler() {
-        val actorAdapter = ActorAdapter()
-        actorAdapter.bindActors(movie.actors)
-        with(fragmentBinding!!.recycler) {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = actorAdapter
-        }
+//        val actorAdapter = ActorAdapter()
+//        actorAdapter.bindActors(movie.actors)
+//        with(fragmentBinding!!.recycler) {
+//            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//            adapter = actorAdapter
+//        }
     }
 
     override fun onDestroy() {

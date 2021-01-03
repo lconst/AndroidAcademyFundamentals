@@ -48,17 +48,16 @@ class MovieAdapter(
         fun onBind(movie: Movie) {
             Glide
                 .with(itemView)
-                .load(movie.poster)
+                .load(movie.posterPath)
                 .transform(RoundedCorners(roundingRadius))
                 .into(binding.moviesImage)
 
             with(binding) {
-                pg.text = itemView.context.getString(R.string.movies_item_age, movie.minimumAge)
-                tag.text = movie.genres.joinToString{ it.name }
-                review.text = itemView.context.getString(R.string.review_text, movie.numberOfRatings)
+                pg.text = itemView.context.getString(R.string.movies_item_age, movie.getMinimumAge())
+                review.text = itemView.context.getString(R.string.review_text, movie.voteCount)
                 name.text = movie.title
-                min.text = itemView.context.getString(R.string.movies_item_min, movie.runtime)
-                rating.rating = movie.getRating()
+                //min.text = itemView.context.getString(R.string.movies_item_min, movie.overview)
+                rating.rating = movie.getRating(stars = 5)
             }
             binding.root.setOnClickListener { clickListener(movie) }
         }

@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.data.Movie
-import com.example.androidacademyfundamentals.data.json.loadMovies
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBinding
 import com.example.androidacademyfundamentals.util.AssetsProviderImp
 import kotlinx.coroutines.*
