@@ -15,7 +15,7 @@ import com.example.androidacademyfundamentals.data.Movie
 import com.example.androidacademyfundamentals.databinding.ViewHolderMovieBinding
 
 class MovieAdapter(
-        private val listener: (Movie) -> Unit
+        private val listener: (Int) -> Unit
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     private var moviesList = listOf<Movie>()
@@ -39,7 +39,7 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    class MovieViewHolder(view: View, private val clickListener: (Movie) -> Unit): RecyclerView.ViewHolder(view) {
+    class MovieViewHolder(view: View, private val clickListener: (Int) -> Unit): RecyclerView.ViewHolder(view) {
 
         private val binding = ViewHolderMovieBinding.bind(itemView)
 
@@ -59,7 +59,7 @@ class MovieAdapter(
                 //min.text = itemView.context.getString(R.string.movies_item_min, movie.overview)
                 rating.rating = movie.getRating(stars = 5)
             }
-            binding.root.setOnClickListener { clickListener(movie) }
+            binding.root.setOnClickListener { clickListener(movie.id) }
         }
     }
 }

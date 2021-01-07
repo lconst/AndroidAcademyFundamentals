@@ -3,14 +3,14 @@ package com.example.androidacademyfundamentals.screen.list
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidacademyfundamentals.R
-import com.example.androidacademyfundamentals.data.Movie
+import com.example.androidacademyfundamentals.api.Configuration
+import com.example.androidacademyfundamentals.api.ConfigurationApi
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBinding
-import com.example.androidacademyfundamentals.util.AssetsProviderImp
-import kotlinx.coroutines.*
 import java.lang.IllegalStateException
 
 class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
@@ -19,8 +19,12 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
     private var fragmentBinding: FragmentMoviesListBinding? = null
 
+    private val config: Configuration by lazy {
+        requireArguments().get(CONFIG) as Configuration
+    }
+
     private val viewModel: MoviesListViewModel by viewModels {
-        MoviesListViewModelFactory(AssetsProviderImp(requireContext()))
+        MoviesListViewModelFactory(config)
     }
 
     private val adapter = MovieAdapter(::onItemClick)
@@ -59,8 +63,8 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
         }
     }
 
-    private fun onItemClick(movie: Movie) {
-        fragmentInteractor.onItemClick(movie)
+    private fun onItemClick(movieId: Int) {
+        fragmentInteractor.onItemClick(movieId)
     }
 
     override fun onDestroy() {
@@ -70,8 +74,11 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
     companion object {
 
-        fun newInstance(): MoviesListFragment {
-            return MoviesListFragment()
+        fun newInstance(config: Configuration): Fragment = MoviesListFragment().apply {
+            arguments = bundleOf(CONFIG to config)
         }
+
+        const val CONFIG = "config"
     }
+
 }

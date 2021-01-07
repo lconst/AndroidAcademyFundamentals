@@ -2,6 +2,7 @@ package com.example.androidacademyfundamentals.screen
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.androidacademyfundamentals.screen.details.MoviesDetailsFragment
@@ -12,18 +13,24 @@ import com.example.androidacademyfundamentals.screen.details.DetailsFragmentInte
 import com.example.androidacademyfundamentals.screen.list.ListFragmentInteractor
 
 class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
+
+    private val viewModel: MainActivityViewModel by viewModels {MainActivityViewModelFactory()}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            navigateToFragment(MoviesListFragment.newInstance(), MoviesListFragment::class.java.name)
+        viewModel.config.observe(this) {
+            if (savedInstanceState == null) {
+                navigateToFragment(MoviesListFragment.newInstance(it), MoviesListFragment::class.java.name)
+            }
         }
+        viewModel.loadConfig()
     }
 
-    override fun onItemClick(movie: Movie) {
+    override fun onItemClick(movieId: Int) {
         navigateToFragment(
-                MoviesDetailsFragment.newInstance(movie),
+                MoviesDetailsFragment.newInstance(movieId),
                 MoviesDetailsFragment::class.java.name
         )
     }

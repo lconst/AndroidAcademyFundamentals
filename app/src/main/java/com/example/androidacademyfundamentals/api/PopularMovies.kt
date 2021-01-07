@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 
 @Serializable
-data class PopularMoviesResponse(
+class PopularMoviesResponse(
 
 	@SerialName("page")
 	val page: Int,
@@ -20,8 +20,6 @@ data class PopularMoviesResponse(
 	@SerialName("total_results")
 	val totalResults: Int
 )
-
-
 
 interface PopularMoviesApi {
 	@GET("movie/popular")

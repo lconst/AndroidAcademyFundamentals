@@ -1,21 +1,25 @@
 package com.example.androidacademyfundamentals.api
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import retrofit2.http.GET
 
+@Parcelize
 @Serializable
-data class ConfigurationResponse(
+class Configuration(
 
 	@SerialName("images")
 	val images: Images,
 
 	@SerialName("change_keys")
 	val changeKeys: List<String>
-)
+) : Parcelable
 
+@Parcelize
 @Serializable
-data class Images(
+class Images(
 
 	@SerialName("poster_sizes")
 	val posterSizes: List<String>,
@@ -37,9 +41,9 @@ data class Images(
 
 	@SerialName("profile_sizes")
 	val profileSizes: List<String>
-)
+) : Parcelable
 
 interface ConfigurationApi {
 	@GET("configuration")
-	suspend fun getConfiguration(): ConfigurationResponse
+	suspend fun getConfiguration(): Configuration
 }

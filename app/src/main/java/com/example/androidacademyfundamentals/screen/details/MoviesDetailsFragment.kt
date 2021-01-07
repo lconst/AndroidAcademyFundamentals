@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.androidacademyfundamentals.R
@@ -18,7 +19,11 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
     private lateinit var listener: DetailsFragmentInterractor
     private var fragmentBinding: FragmentMoviesDetailsBinding? = null
-    private val movie: Movie by lazy { requireArguments().get(MOVIE_KEY) as Movie }
+    private val movieId: Int by lazy { requireArguments().getInt(MOVIE_ID) }
+
+    private val viewModel: MoviesDetailsViewModel by viewModels {
+        MoviesDetailsViewModelFactory(movieId)
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -33,6 +38,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
         super.onViewCreated(view, savedInstanceState)
 
         fragmentBinding = FragmentMoviesDetailsBinding.bind(view)
+
         setViews()
         initRecycler()
     }
@@ -70,10 +76,10 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
     companion object {
 
-        fun newInstance(movie: Movie): Fragment = MoviesDetailsFragment().apply {
-            arguments = bundleOf(MOVIE_KEY to movie)
+        fun newInstance(movieId: Int): Fragment = MoviesDetailsFragment().apply {
+            arguments = bundleOf(MOVIE_ID to movieId)
         }
 
-        const val MOVIE_KEY = "movie"
+        const val MOVIE_ID = "movieId"
     }
 }
