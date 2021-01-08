@@ -15,7 +15,7 @@ class MoviesListViewModel(
     val movies: LiveData<List<Movie>> = Transformations.map(_movies) { list ->
         list.forEach {
             it.posterPath =
-                config.images.baseUrl + config.images.posterSizes[PosterSize.w342.ordinal] + it.posterPath
+                config.images.baseUrl + config.images.posterSizes[PosterSizes.w342.ordinal] + it.posterPath
         }
         list
     }
@@ -26,11 +26,9 @@ class MoviesListViewModel(
         coroutineScope
     }
 
-    private val retrofitModule = RetrofitModule()
-
     fun loadMovies() {
         viewModelScope.launch(exceptionHandler) {
-            _movies.value = retrofitModule.popularMoviesApi.getPopularMovies().results
+            _movies.value = RetrofitModule.nowPlayingMoviesApi.getNowPlayingMovies().results
         }
     }
 
@@ -38,13 +36,4 @@ class MoviesListViewModel(
         private val TAG = MoviesListViewModel::class.java.simpleName
     }
 
-    enum class PosterSize() {
-        w92,
-        w154,
-        w185,
-        w342,
-        w500,
-        w780,
-        original
-    }
 }

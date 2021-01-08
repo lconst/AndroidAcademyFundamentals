@@ -8,10 +8,11 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.androidacademyfundamentals.R
-import com.example.androidacademyfundamentals.data.Movie
+import com.example.androidacademyfundamentals.api.BackDropSizes
+import com.example.androidacademyfundamentals.api.Configuration
+import com.example.androidacademyfundamentals.api.MovieDetailsResponse
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesDetailsBinding
 import java.lang.IllegalStateException
 
@@ -20,6 +21,8 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
     private lateinit var listener: DetailsFragmentInterractor
     private var fragmentBinding: FragmentMoviesDetailsBinding? = null
     private val movieId: Int by lazy { requireArguments().getInt(MOVIE_ID) }
+
+    private val config: Configuration by lazy { requireArguments().get(CONFIG) as Configuration }
 
     private val viewModel: MoviesDetailsViewModel by viewModels {
         MoviesDetailsViewModelFactory(movieId)
@@ -39,34 +42,33 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
         fragmentBinding = FragmentMoviesDetailsBinding.bind(view)
 
-        setViews()
-        initRecycler()
+        viewModel.movieDetails.observe(this.viewLifecycleOwner) {
+            setViews(it)
+        }
+        viewModel.loadMovieDetails()
     }
 
-    private fun setViews() {
-//        Glide
-//            .with(requireContext())
-//            .load(movie.backdrop)
-//            .into(fragmentBinding!!.backdoor)
-//
-//        with(fragmentBinding?:return) {
-//            backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
-//            back.setOnClickListener { listener.onBack() }
-//            name.text = movie.title
-//            pg.text = requireContext().getString(R.string.movies_item_age, movie.minimumAge)
-//            tag.text = movie.genres.joinToString { it.name }
-//            rating.rating = movie.getRating()
-//            storylineText.text = movie.overview
-//        }
-    }
+    private fun setViews(movieDetails: MovieDetailsResponse) {
 
-    private fun initRecycler() {
-//        val actorAdapter = ActorAdapter()
-//        actorAdapter.bindActors(movie.actors)
-//        with(fragmentBinding!!.recycler) {
-//            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//            adapter = actorAdapter
-//        }
+        val baseUrl = config.images.baseUrl
+        val size = config.images.posterSizes[BackDropSizes.w1280.ordinal]
+
+        Glide
+            .with(requireContext())
+            .load(baseUrl + size + movieDetails.backdropPath)
+            .into(fragmentBinding!!.backdoor)
+
+        with(fragmentBinding?:return) {
+            backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
+            back.setOnClickListener { listener.onBack() }
+            name.text = movieDetails.title
+            pg.text = requireContext().getString(R.string.movies_item_age, movieDetails.getMinimumAge())
+            tag.text = movieDetails.genres?.joinToString { it.name }
+            rating.rating = movieDetails.getRating()
+            review.text = movieDetails.voteCount.toString()
+
+            storylineText.text = movieDetails.overview
+        }
     }
 
     override fun onDestroy() {
@@ -76,10 +78,14 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
 
     companion object {
 
-        fun newInstance(movieId: Int): Fragment = MoviesDetailsFragment().apply {
-            arguments = bundleOf(MOVIE_ID to movieId)
+        fun newInstance(movieId: Int, config: Configuration): Fragment = MoviesDetailsFragment().apply {
+            arguments = bundleOf(
+                    MOVIE_ID to movieId,
+                    CONFIG to config
+            )
         }
 
         const val MOVIE_ID = "movieId"
+        const val CONFIG = "config"
     }
 }

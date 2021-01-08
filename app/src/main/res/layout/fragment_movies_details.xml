@@ -67,12 +67,12 @@
             android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/name_top_margin"
             android:layout_marginEnd="@dimen/space_2x"
-            android:text="@string/avengers_end_game"
             android:textColor="@color/gray_1"
             android:textSize="@dimen/text_size_5x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/avengers_end_game" />
 
         <TextView
             android:id="@+id/tag"
@@ -81,10 +81,10 @@
             android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_0_5x"
             android:layout_marginEnd="@dimen/space_2x"
-            android:text="@string/tag_text"
             android:textColor="@color/red_1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name" />
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="@string/tag_text" />
 
         <RatingBar
             android:id="@+id/rating"
@@ -108,13 +108,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_1x"
-            android:text="@string/rating_text"
             android:textColor="@color/gray_2"
             android:textSize="@dimen/text_size_1_75x"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/rating"
             app:layout_constraintStart_toEndOf="@id/rating"
-            app:layout_constraintTop_toTopOf="@id/rating" />
+            app:layout_constraintTop_toTopOf="@id/rating"
+            tools:text="@string/rating_text" />
 
         <TextView
             android:id="@+id/storyline_name"
@@ -123,12 +123,12 @@
             android:layout_marginStart="@dimen/space_2x"
             android:layout_marginTop="@dimen/space_3x"
             android:layout_marginEnd="@dimen/space_2x"
-            android:text="@string/storyline_name"
             android:textColor="@color/gray_1"
             android:textSize="@dimen/text_size_1_75x"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/review" />
+            app:layout_constraintTop_toBottomOf="@id/review"
+            tools:text="@string/storyline_name" />
 
         <TextView
             android:id="@+id/storyline_text"
@@ -138,36 +138,12 @@
             android:layout_marginTop="@dimen/space_0_5x"
             android:layout_marginEnd="@dimen/space_2x"
             android:lineSpacingExtra="6sp"
-            android:text="@string/storyline_text"
             android:textColor="@color/white_opacity_85"
             android:textSize="@dimen/text_size_1_75x"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/storyline_name" />
+            app:layout_constraintTop_toBottomOf="@id/storyline_name"
+            tools:text="@string/storyline_text" />
 
-        <TextView
-            android:id="@+id/cast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2x"
-            android:layout_marginTop="@dimen/space_3x"
-            android:layout_marginEnd="@dimen/space_2x"
-            android:lineSpacingExtra="10sp"
-            android:text="@string/cast"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_1_75x"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/storyline_text" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_2x"
-            android:layout_marginEnd="@dimen/space_2x"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cast"
-            tools:listitem="@layout/view_holder_actor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

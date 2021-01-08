@@ -56,8 +56,7 @@ class MovieAdapter(
                 pg.text = itemView.context.getString(R.string.movies_item_age, movie.getMinimumAge())
                 review.text = itemView.context.getString(R.string.review_text, movie.voteCount)
                 name.text = movie.title
-                //min.text = itemView.context.getString(R.string.movies_item_min, movie.overview)
-                rating.rating = movie.getRating(stars = 5)
+                rating.rating = movie.getRating()
             }
             binding.root.setOnClickListener { clickListener(movie.id) }
         }

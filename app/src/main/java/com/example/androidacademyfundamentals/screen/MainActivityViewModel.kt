@@ -3,12 +3,10 @@ package com.example.androidacademyfundamentals.screen
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.androidacademyfundamentals.api.Configuration
-import com.example.androidacademyfundamentals.api.ConfigurationApi
 import com.example.androidacademyfundamentals.api.RetrofitModule
 import kotlinx.coroutines.*
 
 class MainActivityViewModel: ViewModel() {
-
 
     private val _config = MutableLiveData<Configuration>()
     val config : LiveData<Configuration> get() = _config
@@ -19,11 +17,9 @@ class MainActivityViewModel: ViewModel() {
         coroutineScope
     }
 
-    private val retrofitModule = RetrofitModule()
-
     fun loadConfig() {
         viewModelScope.launch(exceptionHandler) {
-            _config.value = retrofitModule.configurationApi.getConfiguration()
+            _config.value = RetrofitModule.configurationApi.getConfiguration()
         }
     }
 

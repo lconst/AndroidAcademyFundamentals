@@ -51,8 +51,8 @@ class Movie(
 
     fun getMinimumAge(): Int {
         return if (adult) 18
-        else 13
+        else 12
     }
 
-    fun getRating(stars: Int): Float = (rating / 10 * stars).toFloat()
+    fun getRating(stars: Int = 5): Float = (rating / 10 * stars).toFloat()
 }

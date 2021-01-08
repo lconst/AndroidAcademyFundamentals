@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.androidacademyfundamentals.R
 import com.example.androidacademyfundamentals.api.Configuration
-import com.example.androidacademyfundamentals.api.ConfigurationApi
 import com.example.androidacademyfundamentals.databinding.FragmentMoviesListBinding
 import java.lang.IllegalStateException
 
@@ -75,7 +74,7 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
     companion object {
 
         fun newInstance(config: Configuration): Fragment = MoviesListFragment().apply {
-            arguments = bundleOf(CONFIG to config)
+            arguments = bundleOf(CONFIG to config )
         }
 
         const val CONFIG = "config"

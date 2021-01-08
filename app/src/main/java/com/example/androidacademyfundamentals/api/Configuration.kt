@@ -15,7 +15,7 @@ class Configuration(
 
 	@SerialName("change_keys")
 	val changeKeys: List<String>
-) : Parcelable
+): Parcelable
 
 @Parcelize
 @Serializable
@@ -46,4 +46,22 @@ class Images(
 interface ConfigurationApi {
 	@GET("configuration")
 	suspend fun getConfiguration(): Configuration
+}
+
+
+enum class PosterSizes {
+	w92,
+	w154,
+	w185,
+	w342,
+	w500,
+	w780,
+	original
+}
+
+enum class BackDropSizes {
+	w300,
+	w780,
+	w1280,
+	original
 }

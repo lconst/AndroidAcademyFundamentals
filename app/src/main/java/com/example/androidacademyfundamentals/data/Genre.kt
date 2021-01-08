@@ -1,3 +1,14 @@
 package com.example.androidacademyfundamentals.data
 
-class Genre(val id: Int, val name: String)
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+class Genre(
+
+    @SerialName("name")
+    val name: String,
+
+    @SerialName("id")
+    val id: Int
+)

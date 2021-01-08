@@ -9,8 +9,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
-
-class RetrofitModule {
+object RetrofitModule {
 
     private val baseUrl = "https://api.themoviedb.org/3/"
 
@@ -31,6 +30,8 @@ class RetrofitModule {
 
     val configurationApi: ConfigurationApi = retrofit.create(ConfigurationApi::class.java)
     val popularMoviesApi: PopularMoviesApi = retrofit.create(PopularMoviesApi::class.java)
+    val nowPlayingMoviesApi: NowPlayingMoviesApi = retrofit.create(NowPlayingMoviesApi::class.java)
+    val movieDetailsApi: MovieDetailsApi = retrofit.create(MovieDetailsApi::class.java)
 
     private class ApiKeyInterceptor : Interceptor {
 
@@ -46,8 +47,6 @@ class RetrofitModule {
         }
     }
 }
-
-
 
 private const val API_KEY = "api_key"
 private const val apiKeyValue: String = "36349fb4f5fd95012e34eff921fb06e5"
