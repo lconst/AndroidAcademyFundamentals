@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/space_1_5x"
         android:paddingEnd="@dimen/space_1_5x"
-        tools:context=".screen.details.MoviesDetailsFragment">
+        tools:context=".presentation.details.view.MoviesDetailsFragment">
 
         <ImageView
             android:id="@+id/location"
