@@ -12,7 +12,7 @@ import com.example.androidacademyfundamentals.presentation.movies.view.MoviesLis
 class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
 
     private val viewModel: MainActivityViewModel by viewModels {
-        MainActivityViewModelFactory((application as MovieApp).configurationRepo)
+        MainActivityViewModelFactory((application as MovieApp).networkModule.configurationRepo)
     }
     private lateinit var config: Configuration
 

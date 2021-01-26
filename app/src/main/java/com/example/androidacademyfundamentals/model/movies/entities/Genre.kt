@@ -1,3 +1,14 @@
 package com.example.androidacademyfundamentals.model.movies.entities
 
-class Genre(val name: String, val id: Int)
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+class Genre(
+
+    @SerialName("name")
+    val name: String,
+
+    @SerialName("id")
+    val id: Int
+)

@@ -1,5 +1,6 @@
 package com.example.androidacademyfundamentals.model.movies.network
 
+import com.example.androidacademyfundamentals.model.movies.entities.Movie
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -47,4 +48,6 @@ class MovieNetworkModel(
 
     @SerialName("vote_count")
     val voteCount: Int
-)
+) {
+    fun mapper() = Movie(rating, adult, id, title, overview, null, posterPath, backdropPath, voteCount)
+}

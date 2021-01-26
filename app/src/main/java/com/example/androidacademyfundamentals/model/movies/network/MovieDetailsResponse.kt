@@ -1,78 +1,75 @@
 package com.example.androidacademyfundamentals.model.movies.network
 
+import com.example.androidacademyfundamentals.model.movies.entities.Genre
+import com.example.androidacademyfundamentals.model.movies.entities.Movie
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 class MovieDetailsResponse(
 
-    @SerialName("original_language")
+        @SerialName("original_language")
     val originalLanguage: String,
 
-    @SerialName("imdb_id")
+        @SerialName("imdb_id")
     val imdbId: String,
 
-    @SerialName("video")
+        @SerialName("video")
     val video: Boolean,
 
-    @SerialName("title")
+        @SerialName("title")
     val title: String,
 
-    @SerialName("backdrop_path")
+        @SerialName("backdrop_path")
     val backdropPath: String,
 
-    @SerialName("revenue")
+        @SerialName("revenue")
     val revenue: Int,
 
-    @SerialName("genres")
-    val genres: List<GenreNetworkModel>,
+        @SerialName("genres")
+    val genres: List<Genre>,
 
-    @SerialName("popularity")
+        @SerialName("popularity")
     val popularity: Double,
 
-    @SerialName("id")
+        @SerialName("id")
     val id: Int,
 
-    @SerialName("vote_count")
+        @SerialName("vote_count")
     val voteCount: Int,
 
-    @SerialName("budget")
+        @SerialName("budget")
     val budget: Int,
 
-    @SerialName("overview")
+        @SerialName("overview")
     val overview: String,
 
-    @SerialName("original_title")
+        @SerialName("original_title")
     val originalTitle: String,
 
-    @SerialName("runtime")
+        @SerialName("runtime")
     val runtime: Int,
 
-    @SerialName("poster_path")
+        @SerialName("poster_path")
     val posterPath: String,
 
-    @SerialName("release_date")
+        @SerialName("release_date")
     val releaseDate: String,
 
-    @SerialName("vote_average")
+        @SerialName("vote_average")
     val rating: Double,
 
-    @SerialName("tagline")
+        @SerialName("tagline")
     val tagline: String,
 
-    @SerialName("adult")
+        @SerialName("adult")
     val adult: Boolean,
 
-    @SerialName("homepage")
+        @SerialName("homepage")
     val homepage: String,
 
-    @SerialName("status")
+        @SerialName("status")
     val status: String
 ) {
-    fun getMinimumAge(): Int {
-        return if (adult) 18
-        else 12
-    }
-
-    fun getRating(stars: Int = 5): Float =  (rating / 10 * stars).toFloat()
+    fun mapper() = Movie(rating, adult, id, title, overview, genres, posterPath, backdropPath, voteCount)
 }

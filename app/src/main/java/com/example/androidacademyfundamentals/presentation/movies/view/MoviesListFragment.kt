@@ -27,7 +27,7 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
     }
 
     private val viewModel: MoviesListViewModel by viewModels {
-        MoviesListViewModelFactory((requireActivity().application as MovieApp).moviesRepo, config)
+        MoviesListViewModelFactory((requireActivity().application as MovieApp).networkModule.moviesRepo, config)
     }
 
     private val adapter = MovieAdapter(::onItemClick)

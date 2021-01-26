@@ -29,7 +29,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
     private val config: Configuration by lazy { requireArguments().get(CONFIG) as Configuration }
 
     private val viewModel: MoviesDetailsViewModel by viewModels {
-        MoviesDetailsViewModelFactory(movieId, (requireActivity().application as MovieApp).moviesRepo)
+        MoviesDetailsViewModelFactory(movieId, (requireActivity().application as MovieApp).networkModule.moviesRepo)
     }
 
     override fun onAttach(context: Context) {
