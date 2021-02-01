@@ -4,13 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.androidacademyfundamentals.model.movies.entities.Genre
 
 @Entity(
-    tableName = DataBaseContract.MoviesPopular.TABLE_NAME,
+    tableName = DataBaseContract.MoviesDetails.TABLE_NAME,
     indices = [Index(DataBaseContract.COLUMN_NAME_ID)]
 )
-class PopularMoviesEntity(
+class MovieDetailsEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = DataBaseContract.COLUMN_NAME_ID)
@@ -19,9 +18,6 @@ class PopularMoviesEntity(
     @ColumnInfo(name = DataBaseContract.COLUMN_NAME_TITLE)
     val title: String,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_POSTER)
-    val poster: String,
-
     @ColumnInfo(name = DataBaseContract.COLUMN_NAME_VOTES)
     val votes: Int,
 
@@ -29,5 +25,14 @@ class PopularMoviesEntity(
     val rating: Double,
 
     @ColumnInfo(name = DataBaseContract.COLUMN_NAME_ADULT)
-    val adult: Boolean
+    val adult: Boolean,
+
+    @ColumnInfo(name = DataBaseContract.MoviesDetails.COLUMN_NAME_OVERVIEW)
+    val overview: String,
+
+    @ColumnInfo(name = DataBaseContract.MoviesDetails.COLUMN_NAME_GENRES)
+    val genre: String,
+
+    @ColumnInfo(name = DataBaseContract.MoviesDetails.COLUMN_NAME_BACKDROP)
+    val backdrop: String,
 )

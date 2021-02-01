@@ -4,13 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.androidacademyfundamentals.model.movies.entities.Genre
 
 @Entity(
-    tableName = DataBaseContract.MoviesPopular.TABLE_NAME,
+    tableName = DataBaseContract.MoviesNowPlaying.TABLE_NAME,
     indices = [Index(DataBaseContract.COLUMN_NAME_ID)]
 )
-class PopularMoviesEntity(
+class NowPlayingMoviesEntity(
 
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = DataBaseContract.COLUMN_NAME_ID)
