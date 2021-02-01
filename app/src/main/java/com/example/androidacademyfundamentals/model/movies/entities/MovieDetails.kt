@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class Movie(
+class MovieDetails(
 
     @SerialName("vote_average")
     private val rating: Double,
@@ -22,9 +22,17 @@ open class Movie(
     var posterPath: String,
 
     @SerialName("vote_count")
-    val voteCount: Int
-) {
+    val voteCount: Int,
 
+    @SerialName("overview")
+    val overview: String,
+
+    @SerialName("genres")
+    val genre: List<Genre>,
+
+    @SerialName("backdrop_path")
+    val backdropPath: String,
+){
     fun getMinimumAge(): Int {
         return if (adult) 18
         else 12

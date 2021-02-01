@@ -1,6 +1,7 @@
 package com.example.androidacademyfundamentals.model.movies.repositories
 
 import com.example.androidacademyfundamentals.model.movies.entities.Movie
+import com.example.androidacademyfundamentals.model.movies.entities.MovieDetails
 import com.example.androidacademyfundamentals.model.movies.network.MoviesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -13,18 +14,18 @@ class MoviesRepository(private val moviesApi: MoviesApi) {
     suspend fun getPopular(): List<Movie> {
         return withContext(Dispatchers.IO) {
             moviesApi.getPopularMovies()
-        }.results.map { it.mapper() }
+        }.results
     }
 
     suspend fun getNowPlaying(): List<Movie> {
         return withContext(Dispatchers.IO) {
             moviesApi.getNowPlayingMovies()
-        }.results.map { it.mapper() }
+        }.results
     }
 
-    suspend fun getDetails(movieId: Int): Movie {
+    suspend fun getDetails(movieId: Int): MovieDetails {
         return withContext(Dispatchers.IO) {
             moviesApi.getMovieDetails(movieId)
-        }.mapper()
+        }
     }
 }

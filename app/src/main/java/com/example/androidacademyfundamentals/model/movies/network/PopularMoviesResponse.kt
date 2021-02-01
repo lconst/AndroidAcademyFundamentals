@@ -1,5 +1,6 @@
 package com.example.androidacademyfundamentals.model.movies.network
 
+import com.example.androidacademyfundamentals.model.movies.entities.Movie
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,7 +14,7 @@ class PopularMoviesResponse(
     val totalPages: Int,
 
     @SerialName("results")
-    val results: List<MovieNetworkModel>,
+    val results: List<Movie>,
 
     @SerialName("total_results")
     val totalResults: Int

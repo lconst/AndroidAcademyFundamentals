@@ -16,6 +16,7 @@ import com.example.androidacademyfundamentals.MovieApp
 import com.example.androidacademyfundamentals.model.configuration.entities.BackDropSizes
 import com.example.androidacademyfundamentals.model.configuration.entities.Configuration
 import com.example.androidacademyfundamentals.model.movies.entities.Movie
+import com.example.androidacademyfundamentals.model.movies.entities.MovieDetails
 import com.example.androidacademyfundamentals.presentation.details.viewmodel.MoviesDetailsViewModel
 import com.example.androidacademyfundamentals.presentation.details.viewmodel.MoviesDetailsViewModelFactory
 import java.lang.IllegalStateException
@@ -52,7 +53,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
         viewModel.loadMovieDetails()
     }
 
-    private fun setViews(movieDetails: Movie) {
+    private fun setViews(movieDetails: MovieDetails) {
 
         val baseUrl = config.baseUrl
         val size = config.backDropSizes[BackDropSizes.w780.ordinal]
@@ -67,7 +68,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
             back.setOnClickListener { listener.onBack() }
             name.text = movieDetails.title
             pg.text = requireContext().getString(R.string.movies_item_age, movieDetails.getMinimumAge())
-            tag.text = movieDetails.genre?.joinToString { it.name }
+            tag.text = movieDetails.genre.joinToString { it.name }
             rating.rating = movieDetails.getRating()
             review.text = movieDetails.voteCount.toString()
             storylineText.text = movieDetails.overview

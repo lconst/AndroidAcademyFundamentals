@@ -5,6 +5,6 @@ import com.example.androidacademyfundamentals.utils.NetworkModule
 
 class MovieApp : Application() {
 
-   val networkModule by lazy { NetworkModule() }
+    val networkModule by lazy { NetworkModule() }
 }
 
