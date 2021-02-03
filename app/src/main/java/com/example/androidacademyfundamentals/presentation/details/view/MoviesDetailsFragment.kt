@@ -66,11 +66,11 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
         with(fragmentBinding?:return) {
             backdoor.colorFilter = ColorMatrixColorFilter(ColorMatrix().apply { setSaturation(0f)})
             back.setOnClickListener { listener.onBack() }
-            name.text = movieDetails.title
-            pg.text = requireContext().getString(R.string.movies_item_age, movieDetails.getMinimumAge())
+            name.text = movieDetails.movieReview.title
+            pg.text = requireContext().getString(R.string.movies_item_age, movieDetails.movieReview.getMinimumAge())
             tag.text = movieDetails.genre.joinToString { it.name }
-            rating.rating = movieDetails.getRating()
-            review.text = movieDetails.voteCount.toString()
+            rating.rating = movieDetails.movieReview.getRating()
+            review.text = movieDetails.movieReview.voteCount.toString()
             storylineText.text = movieDetails.overview
         }
     }

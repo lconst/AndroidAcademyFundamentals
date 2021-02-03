@@ -1,10 +1,13 @@
 package com.example.androidacademyfundamentals.model.movies.entities
 
+import androidx.room.Entity
+import androidx.room.Index
+import com.example.androidacademyfundamentals.db.DataBaseContract
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-open class Movie(
+class Movie(
 
     @SerialName("vote_average")
     private val rating: Double,
