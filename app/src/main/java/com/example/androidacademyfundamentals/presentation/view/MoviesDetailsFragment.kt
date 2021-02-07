@@ -17,7 +17,7 @@ import com.example.androidacademyfundamentals.model.models.BackDropSizes
 import com.example.androidacademyfundamentals.model.models.Configuration
 import com.example.androidacademyfundamentals.model.models.MovieDetails
 import com.example.androidacademyfundamentals.presentation.viewmodel.MoviesDetailsViewModel
-import com.example.androidacademyfundamentals.presentation.viewmodel.MoviesDetailsViewModelFactory
+import com.example.androidacademyfundamentals.presentation.viewmodel.factories.MoviesDetailsViewModelFactory
 import java.lang.IllegalStateException
 
 class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
@@ -29,7 +29,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
     private val config: Configuration by lazy { requireArguments().get(CONFIG) as Configuration }
 
     private val viewModel: MoviesDetailsViewModel by viewModels {
-        MoviesDetailsViewModelFactory(movieId, (requireActivity().application as MovieApp).networkModule.moviesRepo)
+        MoviesDetailsViewModelFactory(movieId, (requireActivity().application as MovieApp).movieDataSource)
     }
 
     override fun onAttach(context: Context) {
@@ -67,7 +67,7 @@ class MoviesDetailsFragment : Fragment(R.layout.fragment_movies_details) {
             back.setOnClickListener { listener.onBack() }
             name.text = movieDetails.title
             pg.text = requireContext().getString(R.string.movies_item_age, movieDetails.getMinimumAge())
-            tag.text = movieDetails.genre.joinToString { it.name }
+            tag.text = movieDetails.genres.joinToString { it.name }
             rating.rating = movieDetails.getRating()
             review.text = movieDetails.voteCount.toString()
             storylineText.text = movieDetails.overview

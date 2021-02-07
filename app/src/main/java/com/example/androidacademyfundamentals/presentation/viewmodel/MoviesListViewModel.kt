@@ -3,7 +3,8 @@ package com.example.androidacademyfundamentals.presentation.viewmodel
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.androidacademyfundamentals.model.database.MoviesDataBase
-import com.example.androidacademyfundamentals.model.mappers.MovieEntityMapper
+import com.example.androidacademyfundamentals.model.datasource.MoviesDataSource
+import com.example.androidacademyfundamentals.model.mappers.MoviePopularModelEntityMapper
 import com.example.androidacademyfundamentals.model.models.Configuration
 import com.example.androidacademyfundamentals.model.models.PosterSizes
 import com.example.androidacademyfundamentals.model.models.Movie
@@ -11,8 +12,7 @@ import com.example.androidacademyfundamentals.model.network.repositories.MoviesR
 import kotlinx.coroutines.*
 
 class MoviesListViewModel(
-    private val database: MoviesDataBase,
-    private val repository: MoviesRepository,
+    private val dataSource: MoviesDataSource,
     private val config: Configuration
 ) : ViewModel()
 {
@@ -34,14 +34,7 @@ class MoviesListViewModel(
 
     fun loadMovies() {
         viewModelScope.launch(exceptionHandler) {
-            _movies.value = repository.getPopular()
-            movies.value?.map { saveInDatabase(it) }
-        }
-    }
-
-    fun saveInDatabase(movie: Movie) {
-        viewModelScope.launch(exceptionHandler) {
-            database.moviesDao.insert(MovieEntityMapper().mapFrom(movie))
+            _movies.value = dataSource.getPopularMovies()
         }
     }
 

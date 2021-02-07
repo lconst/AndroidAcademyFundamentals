@@ -36,4 +36,6 @@ class MovieDetailsEntity(
 
     @ColumnInfo(name = DataBaseContract.MoviesDetails.COLUMN_NAME_BACKDROP)
     val backdrop: String,
+
 )
+

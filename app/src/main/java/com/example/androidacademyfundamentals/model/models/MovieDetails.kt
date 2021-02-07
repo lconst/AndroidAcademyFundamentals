@@ -5,7 +5,7 @@ class MovieDetails(
     val title: String,
     val voteCount: Int,
     val overview: String,
-    val genre: List<Genre>,
+    val genres: List<Genre>,
     val backdropPath: String,
     val rating: Double,
     val adult: Boolean,

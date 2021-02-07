@@ -4,11 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.androidacademyfundamentals.model.datasource.MoviesDataSource
 import com.example.androidacademyfundamentals.model.models.MovieDetails
 import com.example.androidacademyfundamentals.model.network.repositories.MoviesRepository
 import kotlinx.coroutines.*
 
-class MoviesDetailsViewModel(private val movieId: Int, private val repository: MoviesRepository): ViewModel() {
+class MoviesDetailsViewModel(private val movieId: Int, private val dataSource: MoviesDataSource): ViewModel() {
 
     private val _movieDetails = MutableLiveData<MovieDetails>()
     val movieDetails: LiveData<MovieDetails> get() = _movieDetails
@@ -21,7 +22,7 @@ class MoviesDetailsViewModel(private val movieId: Int, private val repository: M
 
     fun loadMovieDetails() {
         coroutineScope.launch(exceptionHandler) {
-            _movieDetails.postValue(repository.getDetails(movieId))
+            _movieDetails.postValue(dataSource.getDetails(movieId))
         }
     }
 

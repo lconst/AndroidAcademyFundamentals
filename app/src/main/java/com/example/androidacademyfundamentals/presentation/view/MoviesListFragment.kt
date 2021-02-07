@@ -15,7 +15,7 @@ import com.example.androidacademyfundamentals.model.models.Configuration
 import com.example.androidacademyfundamentals.presentation.adapters.MovieAdapter
 import com.example.androidacademyfundamentals.presentation.adapters.RecyclerItemDecoration
 import com.example.androidacademyfundamentals.presentation.viewmodel.MoviesListViewModel
-import com.example.androidacademyfundamentals.presentation.viewmodel.MoviesListViewModelFactory
+import com.example.androidacademyfundamentals.presentation.viewmodel.factories.MoviesListViewModelFactory
 import java.lang.IllegalStateException
 
 class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
@@ -30,8 +30,8 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
     private val viewModel: MoviesListViewModel by viewModels {
         MoviesListViewModelFactory(
-            (requireActivity().application as MovieApp).database,
-            (requireActivity().application as MovieApp).networkModule.moviesRepo,
+//            (requireActivity().application as MovieApp).database,
+            (requireActivity().application as MovieApp).movieDataSource,
             config)
     }
 

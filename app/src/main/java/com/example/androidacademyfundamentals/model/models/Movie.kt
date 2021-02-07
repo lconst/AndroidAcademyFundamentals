@@ -6,8 +6,7 @@ class Movie(
     var posterPath: String,
     val voteCount: Int,
     val rating: Double,
-    val adult: Boolean,
-    val category: Category
+    val adult: Boolean
 
 ) {
 
@@ -18,5 +17,4 @@ class Movie(
 
     fun getRating(stars: Int = 5): Float = (rating / 10 * stars).toFloat()
 
-    enum class Category{POPULAR, PLAYING, FAVORITE}
 }

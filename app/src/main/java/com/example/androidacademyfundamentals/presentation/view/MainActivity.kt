@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.androidacademyfundamentals.*
 import com.example.androidacademyfundamentals.model.models.Configuration
 import com.example.androidacademyfundamentals.presentation.viewmodel.MainActivityViewModel
-import com.example.androidacademyfundamentals.presentation.viewmodel.MainActivityViewModelFactory
+import com.example.androidacademyfundamentals.presentation.viewmodel.factories.MainActivityViewModelFactory
 
 class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
 
