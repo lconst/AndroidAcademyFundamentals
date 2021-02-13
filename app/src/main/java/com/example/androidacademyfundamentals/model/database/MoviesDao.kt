@@ -16,7 +16,7 @@ interface MoviesDao {
     @Query("SELECT * FROM Movies WHERE category LIKE 'PLAYING'")
     suspend fun getNowPlaying(): List<MoviesEntity>
 
-    @Query("SELECT * FROM Details WHERE _id LIKE :id")
+    @Query("SELECT * FROM Details WHERE id LIKE :id")
     suspend fun getDetails(id: Int): MovieDetailsEntity?
 
     @Insert

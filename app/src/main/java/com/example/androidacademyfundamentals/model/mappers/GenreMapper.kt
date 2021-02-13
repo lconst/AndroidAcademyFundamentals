@@ -4,5 +4,6 @@ import com.example.androidacademyfundamentals.model.models.Genre
 import com.example.androidacademyfundamentals.model.network.models.GenresItem
 
 class GenreMapper: Mapper<GenresItem, Genre> {
-    override fun mapFrom(source: GenresItem) = Genre(source.name, source.id)
+
+    override fun invoke(source: GenresItem): Genre = Genre(source.name, source.id)
 }

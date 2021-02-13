@@ -16,18 +16,18 @@ class MoviesRepository(private val moviesApi: MoviesApi) {
     suspend fun getPopular(): List<Movie> {
         return withContext(Dispatchers.IO) {
             moviesApi.getPopularMovies()
-        }.results.map { MovieResultModelMapper().mapFrom(it) }
+        }.results.map { MovieResultModelMapper()(it) }
     }
 
     suspend fun getNowPlaying(): List<Movie> {
         return withContext(Dispatchers.IO) {
             moviesApi.getNowPlayingMovies()
-        }.results.map { MovieResultModelMapper().mapFrom(it) }
+        }.results.map { MovieResultModelMapper()(it) }
     }
 
     suspend fun getDetails(movieId: Int): MovieDetails {
         return withContext(Dispatchers.IO) {
-            MovieDetailsModelMapper().mapFrom(moviesApi.getMovieDetails(movieId))
+            MovieDetailsModelMapper()(moviesApi.getMovieDetails(movieId))
         }
     }
 }

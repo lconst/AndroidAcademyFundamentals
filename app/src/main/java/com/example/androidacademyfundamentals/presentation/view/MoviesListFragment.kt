@@ -30,8 +30,7 @@ class MoviesListFragment : Fragment(R.layout.fragment_movies_list){
 
     private val viewModel: MoviesListViewModel by viewModels {
         MoviesListViewModelFactory(
-//            (requireActivity().application as MovieApp).database,
-            (requireActivity().application as MovieApp).movieDataSource,
+            MovieApp.appComponent.movieDataSource,
             config)
     }
 

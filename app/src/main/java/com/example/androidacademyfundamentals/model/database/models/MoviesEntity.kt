@@ -2,35 +2,32 @@ package com.example.androidacademyfundamentals.model.database.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.androidacademyfundamentals.model.database.DataBaseContract
 
 @Entity(
-    tableName = DataBaseContract.Movies.TABLE_NAME,
-    indices = [Index(DataBaseContract.COLUMN_NAME_ID)]
+    tableName = "Movies"
 )
 class MoviesEntity(
 
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_ID)
+    @ColumnInfo(name = "id")
     val id: Int,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_TITLE)
+    @ColumnInfo(name = "title")
     val title: String,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_POSTER)
+    @ColumnInfo(name = "poster")
     val poster: String,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_VOTES)
+    @ColumnInfo(name = "votes")
     val votes: Int,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_RATING)
+    @ColumnInfo(name = "rating")
     val rating: Double,
 
-    @ColumnInfo(name = DataBaseContract.COLUMN_NAME_ADULT)
+    @ColumnInfo(name = "adult")
     val adult: Boolean,
 
-    @ColumnInfo(name = DataBaseContract.Movies.COLUMN_NAME_CATEGORY)
+    @ColumnInfo(name = "category")
     val category: String
 )

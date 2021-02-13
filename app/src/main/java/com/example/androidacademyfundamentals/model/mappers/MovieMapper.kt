@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
 
 class MoviePopularModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
-    override fun mapFrom(source: Movie): MoviesEntity =
+    override fun invoke(source: Movie): MoviesEntity =
         MoviesEntity(
             id = source.id,
             title = source.title,
@@ -25,7 +25,7 @@ class MoviePopularModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
 class MoviePlayingModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
-    override fun mapFrom(source: Movie): MoviesEntity =
+    override fun invoke(source: Movie): MoviesEntity =
         MoviesEntity(
             id = source.id,
             title = source.title,
@@ -39,7 +39,7 @@ class MoviePlayingModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
 class MovieFavoriteModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
-    override fun mapFrom(source: Movie): MoviesEntity =
+    override fun invoke(source: Movie): MoviesEntity =
         MoviesEntity(
             id = source.id,
             title = source.title,
@@ -53,7 +53,7 @@ class MovieFavoriteModelEntityMapper: Mapper<Movie, MoviesEntity> {
 
 class MovieResultModelMapper: Mapper<MovieResultResponse, Movie> {
 
-    override fun mapFrom(source: MovieResultResponse): Movie =
+    override fun invoke(source: MovieResultResponse): Movie =
         Movie(
             id = source.id,
             title = source.title,
@@ -66,7 +66,7 @@ class MovieResultModelMapper: Mapper<MovieResultResponse, Movie> {
 
 class MovieEntityModelMapper: Mapper<MoviesEntity, Movie> {
 
-    override fun mapFrom(source: MoviesEntity): Movie =
+    override fun invoke(source: MoviesEntity): Movie =
         Movie(
             id = source.id,
             title = source.title,
@@ -79,7 +79,7 @@ class MovieEntityModelMapper: Mapper<MoviesEntity, Movie> {
 
 class MovieEntityDetailsModelMapper: Mapper<MovieDetailsEntity, MovieDetails> {
 
-    override fun mapFrom(source: MovieDetailsEntity): MovieDetails =
+    override fun invoke(source: MovieDetailsEntity): MovieDetails =
         MovieDetails(
             id = source.id,
             title = source.title,
@@ -94,7 +94,7 @@ class MovieEntityDetailsModelMapper: Mapper<MovieDetailsEntity, MovieDetails> {
 
 class MovieDetailsEntityMapper: Mapper<MovieDetails, MovieDetailsEntity> {
 
-    override fun mapFrom(source: MovieDetails): MovieDetailsEntity =
+    override fun invoke(source: MovieDetails): MovieDetailsEntity =
         MovieDetailsEntity(
             id = source.id,
             title = source.title,

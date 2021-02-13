@@ -15,11 +15,11 @@ class MoviesDataSource(
     private val database: MoviesDataBase) {
 
     suspend fun getPopularMovies(): List<Movie> {
-        var result = database.moviesDao.getPopular().map { MovieEntityModelMapper().mapFrom(it) }
+        var result = database.moviesDao.getPopular().map { MovieEntityModelMapper()(it) }
         if (result.isEmpty()) {
             result = networkRepository.getPopular()
             for (item in result) {
-                database.moviesDao.insert(MoviePopularModelEntityMapper().mapFrom(item))
+                database.moviesDao.insert(MoviePopularModelEntityMapper()(item))
             }
         }
         return result
@@ -27,10 +27,10 @@ class MoviesDataSource(
 
     suspend fun getDetails(id: Int): MovieDetails {
         val details = database.moviesDao.getDetails(id)
-        var result = details?.let { MovieEntityDetailsModelMapper().mapFrom(details) }
+        var result = details?.let { MovieEntityDetailsModelMapper()(details) }
         if (result == null) {
             result = networkRepository.getDetails(id)
-            database.moviesDao.putDetails(MovieDetailsEntityMapper().mapFrom(result))
+            database.moviesDao.putDetails(MovieDetailsEntityMapper()(result))
         }
         return result
     }

@@ -8,7 +8,7 @@ import com.example.androidacademyfundamentals.model.database.models.MovieDetails
 import com.example.androidacademyfundamentals.model.database.models.MoviesEntity
 import com.example.androidacademyfundamentals.model.models.MovieDetails
 
-@Database(entities = [MoviesEntity::class, MovieDetailsEntity::class], version = 2)
+@Database(entities = [MoviesEntity::class, MovieDetailsEntity::class], version = 1)
 abstract class MoviesDataBase: RoomDatabase() {
 
     abstract val moviesDao: MoviesDao
@@ -18,7 +18,7 @@ abstract class MoviesDataBase: RoomDatabase() {
         fun create(applicationContext: Context): MoviesDataBase = Room.databaseBuilder(
             applicationContext,
             MoviesDataBase::class.java,
-            DataBaseContract.DATABASE_NAME
+            "Movies.db"
         )
             .fallbackToDestructiveMigration()
             .build()

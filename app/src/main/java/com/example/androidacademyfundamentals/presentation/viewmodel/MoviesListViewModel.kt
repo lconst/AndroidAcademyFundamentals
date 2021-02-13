@@ -34,7 +34,7 @@ class MoviesListViewModel(
 
     fun loadMovies() {
         viewModelScope.launch(exceptionHandler) {
-            _movies.value = dataSource.getPopularMovies()
+            _movies.postValue(dataSource.getPopularMovies())
         }
     }
 

@@ -13,7 +13,7 @@ import com.example.androidacademyfundamentals.presentation.viewmodel.factories.M
 class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
 
     private val viewModel: MainActivityViewModel by viewModels {
-        MainActivityViewModelFactory((application as MovieApp).networkModule.configurationRepo)
+        MainActivityViewModelFactory(MovieApp.appComponent.networkModule.configurationRepo)
     }
     private lateinit var config: Configuration
 
