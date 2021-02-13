@@ -1,10 +1,27 @@
 package com.example.androidacademyfundamentals
 
 import android.app.Application
-import com.example.androidacademyfundamentals.utils.NetworkModule
+import android.content.Context
 
 class MovieApp : Application() {
 
-   val networkModule by lazy { NetworkModule() }
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        appComponent = AppComponent(this)
+    }
+
+    companion object {
+
+        lateinit var instance: MovieApp
+            private set
+
+        lateinit var appComponent: AppComponent
+            private set
+
+        fun applicationContext(): Context {
+            return instance.applicationContext
+        }
+    }
 }
 

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
@@ -47,6 +48,9 @@ dependencies {
     def okhttp_version = '4.9.0'
     def retrofit_version = '2.9.0'
     def serializationjson_version = '1.0.1'
+    def room_version = '2.2.6'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -73,7 +77,13 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  //  implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+    kapt "androidx.room:room-compiler:$room_version"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
