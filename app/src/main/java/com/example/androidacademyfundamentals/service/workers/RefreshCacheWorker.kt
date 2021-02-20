@@ -41,7 +41,6 @@ class RefreshCacheWorker(
                             if(networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
                                 coroutineScope.launch {
                                     MovieApp.appComponent.movieDataSource.refreshData()
-                                    //stopNetworkCallback()
                                     completer.set(Result.success())
                                     Log.d(TAG, "Success")
                                 }
@@ -61,11 +60,6 @@ class RefreshCacheWorker(
             callback
         }
     }
-
-    fun stopNetworkCallback() {
-        connManager.unregisterNetworkCallback(ConnectivityManager.NetworkCallback())
-    }
-    
 
     companion object {
         private val TAG = RefreshCacheWorker::class.java.simpleName
