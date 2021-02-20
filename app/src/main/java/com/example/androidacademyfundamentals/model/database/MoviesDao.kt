@@ -1,9 +1,6 @@
 package com.example.androidacademyfundamentals.model.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.androidacademyfundamentals.model.database.models.MovieDetailsEntity
 import com.example.androidacademyfundamentals.model.database.models.MoviesEntity
 
@@ -19,7 +16,7 @@ interface MoviesDao {
     @Query("SELECT * FROM Details WHERE id LIKE :id")
     suspend fun getDetails(id: Int): MovieDetailsEntity?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(movies: MoviesEntity)
 
     @Query("DELETE FROM Movies")

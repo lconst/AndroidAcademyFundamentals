@@ -8,9 +8,10 @@ import com.example.androidacademyfundamentals.model.mappers.MoviePopularModelEnt
 import com.example.androidacademyfundamentals.model.models.Movie
 import com.example.androidacademyfundamentals.model.models.MovieDetails
 import com.example.androidacademyfundamentals.model.network.repositories.MoviesRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MoviesDataSource(
-
     private val networkRepository: MoviesRepository,
     private val database: MoviesDataBase) {
 
@@ -18,9 +19,7 @@ class MoviesDataSource(
         var result = database.moviesDao.getPopular().map { MovieEntityModelMapper()(it) }
         if (result.isEmpty()) {
             result = networkRepository.getPopular()
-            for (item in result) {
-                database.moviesDao.insert(MoviePopularModelEntityMapper()(item))
-            }
+            saveMovies(result)
         }
         return result
     }
@@ -33,5 +32,15 @@ class MoviesDataSource(
             database.moviesDao.putDetails(MovieDetailsEntityMapper()(result))
         }
         return result
+    }
+
+    suspend fun refreshData() {
+        saveMovies(networkRepository.getPopular())
+    }
+
+    private suspend fun saveMovies(movies: List<Movie>) = withContext(Dispatchers.IO) {
+        for (item in movies) {
+            database.moviesDao.insert(MoviePopularModelEntityMapper()(item))
+        }
     }
 }
