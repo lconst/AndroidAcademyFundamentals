@@ -5,10 +5,13 @@ import android.os.PersistableBundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.WorkManager
 import com.example.androidacademyfundamentals.*
 import com.example.androidacademyfundamentals.model.models.Configuration
 import com.example.androidacademyfundamentals.presentation.viewmodel.MainActivityViewModel
 import com.example.androidacademyfundamentals.presentation.viewmodel.factories.MainActivityViewModelFactory
+import com.example.androidacademyfundamentals.service.RefreshCacheRepository
 
 class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmentInterractor {
 
@@ -28,6 +31,12 @@ class MainActivity : AppCompatActivity(), ListFragmentInteractor, DetailsFragmen
             }
         }
         viewModel.loadConfig()
+        WorkManager.getInstance(applicationContext)
+            .enqueueUniquePeriodicWork(
+                "RefreshCache",
+                ExistingPeriodicWorkPolicy.KEEP,
+                RefreshCacheRepository().requestMovies
+            )
     }
 
     override fun onItemClick(movieId: Int) {
