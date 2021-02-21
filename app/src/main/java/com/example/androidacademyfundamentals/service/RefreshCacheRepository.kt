@@ -10,13 +10,12 @@ class RefreshCacheRepository {
 
     private val constraints = Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
 
-    val requestMovies = PeriodicWorkRequestBuilder<RefreshCacheWorker>(INTERVAL, TimeUnit.MINUTES)
-        .setInitialDelay(INTERVAL, TimeUnit.SECONDS)
+    val requestMovies = PeriodicWorkRequestBuilder<RefreshCacheWorker>(INTERVAL, TimeUnit.HOURS)
         .setConstraints(constraints)
         .build()
 
     companion object {
-        private const val INTERVAL = 16L
+        private const val INTERVAL = 8L
     }
 }
 
